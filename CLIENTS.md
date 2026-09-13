@@ -6,13 +6,13 @@
 
 | Client | État | Pack / montant | Contact | Négocié par | Construit par | Prochaine action (qui) |
 |---|---|---|---|---|---|---|
-| **Cap Grill** — Marina Cap Monastir | 🟢 **LIVRÉ** | Gold — 1 500 DT (40/30/30) | Si Slim | Négociateur | Youssef + Haroun | Lancer le bloc de suppression `sql/GO-LIVE-2026-09-07.sql` puis envoyer le message de livraison (Youssef) |
-| **Caprice** | 🔵 **PRÊT À LIVRER** | *(pack et prix à inscrire)* | *(à compléter)* | Négociateur | Haroun (menu) + Youssef (stock) | Vérifier que la connexion admin marche en prod (variables Vercel), fixer la date de remise (Haroun) |
-| **Art+** — Flashback+ et R+ (2 salles) | 🟡 **À NÉGOCIER** | Gold ×2 + module tableau des tables — ≈ 3 000 DT visés | Amine Dababi | Négociateur | — | Mener le rendez-vous avec la proposition `clients/art/` (Négociateur) |
-| **Bistrot+** | 🟡 **À NÉGOCIER** | Gold — 1 500 DT ou 139 DT/mois | *(à compléter)* | Négociateur | — | Obtenir ~15 photos du menu + nom du gérant pour préparer la démo (Négociateur) |
-| **Fares** | 🟡 À NÉGOCIER | Design seul — 300 DT | Fares | Négociateur | — | Récupérer le menu + logo (Négociateur) |
-| **Captain** | 🟡 À NÉGOCIER | QR hors-ligne — 300 à 800 DT selon option | Fraj Chrif | Négociateur | — | Tenir le RDV prévu début août, choisir l'option O1/O2/O3 |
-| **Kavos Café** | ⚪ À QUALIFIER | — | *(à compléter)* | Négociateur | — | Identifier la catégorie et le contact |
+| **Cap Grill** — Marina Cap Monastir | 🟢 **LIVRÉ** | Gold — 1 500 DT (40/30/30) | Si Slim | Bayram + Idriss | Youssef + Haroun | Lancer le bloc de suppression `sql/GO-LIVE-2026-09-07.sql` puis envoyer le message de livraison (Youssef) |
+| **Caprice** | 🔵 **PRÊT À LIVRER** | *(pack et prix à inscrire)* | *(à compléter)* | Bayram + Idriss | Haroun (menu) + Youssef (stock) | Vérifier que la connexion admin marche en prod (variables Vercel), fixer la date de remise (Haroun) |
+| **Art+** — Flashback+ et R+ (2 salles) | 🟡 **À NÉGOCIER** | Gold ×2 + module tableau des tables — ≈ 3 000 DT visés | Amine Dababi | Bayram + Idriss | — | Mener le rendez-vous avec la proposition `clients/art/` (Bayram / Idriss) |
+| **Bistrot+** | 🟡 **À NÉGOCIER** | Gold — 1 500 DT ou 139 DT/mois | *(à compléter)* | Bayram + Idriss | — | Obtenir ~15 photos du menu + nom du gérant pour préparer la démo (Bayram / Idriss) |
+| **Fares** | 🟡 À NÉGOCIER | Design seul — 300 DT | Fares | Bayram + Idriss | — | Récupérer le menu + logo (Bayram / Idriss) |
+| **Captain** | 🟡 À NÉGOCIER | QR hors-ligne — 300 à 800 DT selon option | Fraj Chrif | Bayram + Idriss | — | Tenir le RDV prévu début août, choisir l'option O1/O2/O3 |
+| **Kavos Café** | ⚪ À QUALIFIER | — | *(à compléter)* | Bayram + Idriss | — | Identifier la catégorie et le contact |
 | **Nostraliva** — Monastir | ⚫ SANS SUITE | Standard 1 190 DT/an (grille de juillet) | — | — | Youssef (paquet de pitch, 17/07) | Décider : relancer ou archiver |
 | **MANEKEN** (glacier) | ⚪ PROTOTYPE | — | *(à compléter)* | — | Youssef (démo cliquable, 07/09) | Dire si c'est un prospect réel ou une démo générique |
 

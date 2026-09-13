@@ -122,13 +122,17 @@
 **Qui :** Youssef. **Preuve :** `f5d2318`, `docs/RAPPORT-RECETTE-2026-09-08.md`.
 
 ### D-026 — 2026-09-13 — Création de ce système d'exploitation ; états des clients arrêtés
-**Décision :** l'équipe tient un journal des décisions, un tableau clients et une fiche équipe dans `ops/`. États arrêtés ce jour : **Cap Grill = LIVRÉ**, **Caprice = PRÊT À LIVRER**, **Bistrot+ et Art+ = À NÉGOCIER** (aucune négociation menée). Rôles : le négociateur prospecte et négocie ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun a fait le menu, Youssef le stock.
+**Décision :** l'équipe tient un journal des décisions, un tableau clients et une fiche équipe dans `ops/`. États arrêtés ce jour : **Cap Grill = LIVRÉ**, **Caprice = PRÊT À LIVRER**, **Bistrot+ et Art+ = À NÉGOCIER** (aucune négociation menée). Rôles : Bayram et Idriss prospectent et négocient ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun a fait le menu, Youssef le stock.
 **Qui :** Youssef. **Preuve :** `ops/`.
 
 ### D-027 — 2026-09-13 — Compte gérant supplémentaire Cap Grill : gabrielle@capgrill.org
 **Décision :** un accès **gérant complet** (5 onglets) pour Gabrielle. Email `gabrielle@capgrill.org` (le domaine `.tn` est refusé par Supabase à l'inscription), mot de passe convenu oralement (format « Prénom + année »). Le compte a été créé par l'API publique de sign-up, donc **non confirmé** : `sql/0008_admin_gabrielle.sql` le confirme et l'ajoute à `is_main_admin()` — **à lancer dans le SQL Editor**.
 **Qui :** Youssef. **Preuve :** `sql/0008_admin_gabrielle.sql`.
 > ⚠️ Découvert au passage : **l'inscription publique est ouverte** sur le projet Supabase capgrill (n'importe qui peut créer un compte ; sans danger grâce aux RLS par email, mais le README recommandait de la fermer). À faire : Authentication › Sign In / Providers › Email › désactiver « Allow new users to sign up ».
+
+### D-028 — 2026-09-14 — Les négociateurs ont un nom : Bayram et Idriss
+**Décision :** l'équipe compte quatre personnes. **Bayram** et **Idriss** portent la prospection et la négociation ; Youssef et Haroun le développement. Leur approche : aller voir le gérant, nommer la catégorie et la douleur, puis passer la main pour une démo sur le menu réel. Établissements approchés : Cap Grill, Caprice, Art+, Bistrot+ (+ Fares, Captain). Reste à préciser par eux qui a mené quel rendez-vous.
+**Qui :** Youssef. **Preuve :** `ops/TEAM.md`.
 
 ---
 
@@ -139,7 +143,7 @@
 | O-1 | Grille tarifaire officielle : août (800/1 000/1 500/6 000) ou septembre (1 000/1 300/2 000/7 500) ? | Youssef | D-019, 02/09 |
 | O-2 | Hébergement à la remise : Cloudflare Pages ou un Vercel Pro pour tout le portefeuille ? | Youssef + Haroun | D-015, 21/08 |
 | O-3 | Architecture standard des prochains clients : modèle Cap Grill (RLS + auth Supabase) ou modèle Caprice (API serveur + JWT) ? | Youssef + Haroun | D-021, 03/09 |
-| O-4 | Caprice : pack vendu, prix, échéancier, date de remise | Négociateur | — |
+| O-4 | Caprice : pack vendu, prix, échéancier, date de remise | Bayram + Idriss | — |
 | O-5 | Remise 2 salles Art+ (Flashback+ / R+) | Youssef | D-006 |
 | O-6 | Nostraliva et MANEKEN : prospects réels ou archives ? | Youssef | — |
 | O-7 | Domaine capgrill.org sur le compte personnel : régulariser ou documenter l'exception ? | Youssef | D-010 |

@@ -13,7 +13,7 @@ Site statique, aucun build : Vercel sert `index.html` tel quel.
 
 1. **Une décision non écrite n'existe pas.** Une ligne dans `DECISIONS.md` le jour même : date, décision, qui, pourquoi, preuve.
 2. **Un client, un état, un responsable.**
-3. **On signe.** Youssef, Haroun, le négociateur, le client par son nom.
+3. **On signe.** Youssef, Haroun, Bayram, Idriss, le client par son nom.
 4. **La preuve vit dans le dépôt** (commit, doc, ou une phrase qui dit « WhatsApp du 12/09 »).
 
 ## Mettre à jour

@@ -8,7 +8,8 @@
 |---|---|---|---|
 | **Youssef Bouzgarrou** | Co-fondateur — produit, développement, analyse business, décks et rapports | Juillet 2026 | `youssef` (61 commits ici + 3 dans `caprice`) |
 | **Haroun Rhim (Kafteji)** | Co-fondateur — développement | Août 2026 | `Kaftej1` (7 commits ici) · `Haroun Rhim <harounkafteji@gmail.com>` (4 commits dans `caprice`) |
-| **Le négociateur** *(prénom à compléter)* | Prospection et négociation avec les établissements | Août 2026 | — (pas de commits, travail terrain) |
+| **Bayram** | Négociateur — prospection terrain et négociation avec les établissements | Août 2026 | — (pas de commits, travail terrain) |
+| **Idriss** | Négociateur — prospection terrain et négociation avec les établissements | Août 2026 | — (pas de commits, travail terrain) |
 | Claude (Opus 5 / Sonnet 5 / Fable 5.1) | Assistant de développement en binôme, co-auteur des commits | Juillet 2026 | `Co-Authored-By` dans les messages de commit |
 
 Compte partagé de l'entreprise : `youssefbouzgarrouyb1@gmail.com` (GitHub `youssefbouzgarrouyb1-droid`, Vercel, Supabase). Règle du 08/08/2026 : cette identité sert **uniquement** à Menu4All.
@@ -54,11 +55,13 @@ Compte partagé de l'entreprise : `youssefbouzgarrouyb1@gmail.com` (GitHub `yous
 - 03/09 : site menu public FR/EN/AR avec photos par catégorie, connexion admin + éditeur de prix sur Supabase, fonctions Vercel, serveur local SQLite — `cd80966`
 - 03/09 : connexion du dépôt à Vercel, redéploiements, correction du crash `/api/admin/login` en prod — `f5c930e`, `eb5b01b`, `e4d9a80`
 
-## Le négociateur — ce qu'il a fait
+## Bayram et Idriss — ce qu'ils ont fait
 
-Travail terrain, sans trace git ; à compléter par lui dans `DECISIONS.md` au fil de l'eau.
+Prospection et négociation sur le terrain, sans trace git ; à consigner par eux dans `DECISIONS.md` au fil de l'eau.
 
-| Établissement | Contact obtenu | Résultat connu au 13/09 |
+**Leur approche :** ils vont voir le gérant directement, identifient la catégorie de l'établissement (touristique / local premium / café d'études) et la douleur du quotidien, puis passent la main à Youssef et Haroun pour une démo sur le menu réel du client. Cinq à six établissements approchés à ce jour : Cap Grill, Caprice, Art+, Bistrot+, et les petits tickets (Fares, Captain). *Qui a mené quel rendez-vous : à préciser par eux.*
+
+| Établissement | Contact obtenu | Résultat connu au 14/09 |
 |---|---|---|
 | Cap Grill | Si Slim | Signé (Gold 1 500 DT) — livré |
 | Caprice | *(à compléter)* | Accord — menu + stock construits, prêt à livrer |

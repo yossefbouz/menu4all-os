@@ -152,7 +152,7 @@
   <aside class="rail">
     <div class="brand">
       <div class="wordmark">Menu<span>4</span>All · OS</div>
-      <div class="eyebrow">État au 13 sept. 2026</div>
+      <div class="eyebrow">État au 14 sept. 2026</div>
     </div>
     <nav aria-label="Sections">
       <a href="#clients">Clients</a>
@@ -215,22 +215,22 @@
           <div class="meta mono">7 commits ici · 4 dans caprice · depuis le 10/08</div>
         </article>
         <article class="person">
-          <h3>Le négociateur <span style="font-weight:400;color:var(--ink-3)">(prénom à compléter)</span></h3>
-          <div class="role">Prospection et négociation avec les établissements</div>
+          <h3>Bayram &amp; Idriss</h3>
+          <div class="role">Négociateurs — prospection terrain et négociation avec les établissements</div>
           <ul>
             <li><b>Cap Grill</b> — Si Slim : signé, Gold 1 500 DT.</li>
             <li><b>Caprice</b> : accord obtenu, menu + stock construits.</li>
             <li><b>Art+</b> (Flashback+ et R+) — Amine Dababi : contact pris, proposition prête, négociation à mener.</li>
             <li><b>Bistrot+</b>, <b>Fares</b>, <b>Captain</b> (Fraj Chrif), <b>Kavos</b> : identifiés, à négocier ou à qualifier.</li>
           </ul>
-          <div class="meta">Travail terrain, sans trace git — à consigner dans le journal au fil de l'eau.</div>
+          <div class="meta"><b>Leur approche :</b> voir le gérant en direct, nommer la catégorie et la douleur du quotidien, puis passer la main à Youssef et Haroun pour une démo sur le menu réel. Cinq à six établissements approchés. Qui a mené quel rendez-vous : à préciser par eux.</div>
         </article>
       </div>
       <div class="pair"><b>Cap Grill, un travail à deux.</b> Youssef a porté l'architecture, la carte, le backend et huit loops ; Haroun a livré le plan de salle, le compte gérant, la formation et les correctifs transversaux. Marqué <b>livré</b> le 13/09/2026. Sur <b>Caprice</b>, la répartition est nette : Haroun le menu, Youssef le stock.</div>
     </section>
 
     <section id="decisions">
-      <div class="sec-head"><h2>Journal des décisions</h2><p>27 décisions, du 14/07 au 13/09. Filtrer par auteur.</p></div>
+      <div class="sec-head"><h2>Journal des décisions</h2><p>28 décisions, du 14/07 au 14/09. Filtrer par auteur.</p></div>
       <div class="filters" role="group" aria-label="Filtrer par auteur" id="filters">
         <button class="chip" aria-pressed="true" data-f="all">Toutes</button>
         <button class="chip" aria-pressed="false" data-f="Youssef">Youssef</button>
@@ -250,7 +250,7 @@
             <tr><td>O-1</td><td>Grille tarifaire officielle : août (800 / 1 000 / 1 500 / 6 000 DT) ou septembre (1 000 / 1 300 / 2 000 / 7 500 DT) ?</td><td>Youssef</td><td>D-019 · 02/09</td></tr>
             <tr><td>O-2</td><td>Hébergement à la remise officielle : Cloudflare Pages (0 DT, commercial autorisé) ou un seul Vercel Pro pour tout le portefeuille ?</td><td>Youssef + Haroun</td><td>D-015 · 21/08</td></tr>
             <tr><td>O-3</td><td>Architecture standard des prochains clients : modèle Cap Grill (RLS + auth Supabase) ou modèle Caprice (API serveur + JWT) ?</td><td>Youssef + Haroun</td><td>D-021 · 03/09</td></tr>
-            <tr><td>O-4</td><td>Caprice : pack vendu, prix, échéancier, contact du gérant, date de remise.</td><td>Négociateur</td><td>—</td></tr>
+            <tr><td>O-4</td><td>Caprice : pack vendu, prix, échéancier, contact du gérant, date de remise.</td><td>Bayram + Idriss</td><td>—</td></tr>
             <tr><td>O-5</td><td>Remise sur la 2ᵉ salle Art+ (Flashback+ / R+).</td><td>Youssef</td><td>D-006 · 04/08</td></tr>
             <tr><td>O-6</td><td>Nostraliva et MANEKEN : prospects réels ou archives ?</td><td>Youssef</td><td>—</td></tr>
             <tr><td>O-7</td><td>Domaine capgrill.org et Search Console sur le compte personnel : régulariser ou documenter l'exception à la règle des comptes ?</td><td>Youssef</td><td>D-010 · 08/08</td></tr>
@@ -265,7 +265,7 @@
       <div class="rules">
         <div class="rule"><b>Une décision non écrite n'existe pas.</b> Un prix, un périmètre, un compte, une architecture : une ligne dans <code>ops/DECISIONS.md</code> le jour même — date, décision, qui, pourquoi, preuve.</div>
         <div class="rule"><b>Un client, un état, un responsable.</b> Chaque établissement a un seul état (livré, prêt, à négocier…) et une seule personne qui porte la prochaine action.</div>
-        <div class="rule"><b>On signe.</b> Youssef, Haroun, le négociateur, le client par son nom. Jamais « on » ni « l'équipe ».</div>
+        <div class="rule"><b>On signe.</b> Youssef, Haroun, Bayram, Idriss, le client par son nom. Jamais « on » ni « l'équipe ».</div>
         <div class="rule"><b>La preuve vit dans le dépôt.</b> Un hash de commit, un fichier <code>docs/</code>, un rapport. Si c'était un appel ou un WhatsApp, une phrase qui le dit.</div>
       </div>
     </section>
@@ -275,13 +275,13 @@
 <script>
 (function () {
   var CLIENTS = [
-    { name: "Cap Grill", sub: "Marina Cap Monastir · restaurant gastronomique", st: "ok", label: "Livré", pack: "Gold — 1 500 DT (40/30/30)", contact: "Si Slim", neg: "Négociateur", build: "Youssef + Haroun", next: "Lancer le bloc de suppression GO-LIVE, puis envoyer le message de livraison.", who: "Youssef" },
-    { name: "Caprice", sub: "café · menu digital + gestion de stock", st: "ready", label: "Prêt à livrer", pack: "Pack et prix à inscrire", contact: "Contact à compléter", neg: "Négociateur", build: "Haroun (menu) + Youssef (stock)", next: "Vérifier le login admin en prod (5 variables Vercel), fixer la date de remise.", who: "Haroun" },
-    { name: "Art+ — Flashback+ et R+", sub: "cafés d'études · 2 salles", st: "neg", label: "À négocier", pack: "Gold ×2 + tableau des tables — ≈ 3 000 DT", contact: "Amine Dababi", neg: "Négociateur", build: "—", next: "Mener le rendez-vous avec la proposition ART (clients/art/).", who: "Négociateur" },
-    { name: "Bistrot+", sub: "local premium · petite surface, prix mouvants", st: "neg", label: "À négocier", pack: "Gold — 1 500 DT ou 139 DT/mois", contact: "Contact à compléter", neg: "Négociateur", build: "—", next: "Obtenir ~15 photos du menu + nom du gérant pour préparer la démo.", who: "Négociateur" },
-    { name: "Fares", sub: "menu design seul", st: "neg", label: "À négocier", pack: "Design seul — 300 DT", contact: "Fares", neg: "Négociateur", build: "—", next: "Récupérer le menu complet + logo.", who: "Négociateur" },
-    { name: "Captain", sub: "QR sans internet", st: "neg", label: "À négocier", pack: "300 à 800 DT selon option O1/O2/O3", contact: "Fraj Chrif", neg: "Négociateur", build: "—", next: "Tenir le RDV, choisir l'option.", who: "Négociateur" },
-    { name: "Kavos Café", sub: "", st: "qual", label: "À qualifier", pack: "—", contact: "Contact à compléter", neg: "Négociateur", build: "—", next: "Identifier la catégorie et le contact.", who: "Négociateur" },
+    { name: "Cap Grill", sub: "Marina Cap Monastir · restaurant gastronomique", st: "ok", label: "Livré", pack: "Gold — 1 500 DT (40/30/30)", contact: "Si Slim", neg: "Bayram + Idriss", build: "Youssef + Haroun", next: "Lancer le bloc de suppression GO-LIVE, puis envoyer le message de livraison.", who: "Youssef" },
+    { name: "Caprice", sub: "café · menu digital + gestion de stock", st: "ready", label: "Prêt à livrer", pack: "Pack et prix à inscrire", contact: "Contact à compléter", neg: "Bayram + Idriss", build: "Haroun (menu) + Youssef (stock)", next: "Vérifier le login admin en prod (5 variables Vercel), fixer la date de remise.", who: "Haroun" },
+    { name: "Art+ — Flashback+ et R+", sub: "cafés d'études · 2 salles", st: "neg", label: "À négocier", pack: "Gold ×2 + tableau des tables — ≈ 3 000 DT", contact: "Amine Dababi", neg: "Bayram + Idriss", build: "—", next: "Mener le rendez-vous avec la proposition ART (clients/art/).", who: "Bayram / Idriss" },
+    { name: "Bistrot+", sub: "local premium · petite surface, prix mouvants", st: "neg", label: "À négocier", pack: "Gold — 1 500 DT ou 139 DT/mois", contact: "Contact à compléter", neg: "Bayram + Idriss", build: "—", next: "Obtenir ~15 photos du menu + nom du gérant pour préparer la démo.", who: "Bayram / Idriss" },
+    { name: "Fares", sub: "menu design seul", st: "neg", label: "À négocier", pack: "Design seul — 300 DT", contact: "Fares", neg: "Bayram + Idriss", build: "—", next: "Récupérer le menu complet + logo.", who: "Bayram / Idriss" },
+    { name: "Captain", sub: "QR sans internet", st: "neg", label: "À négocier", pack: "300 à 800 DT selon option O1/O2/O3", contact: "Fraj Chrif", neg: "Bayram + Idriss", build: "—", next: "Tenir le RDV, choisir l'option.", who: "Bayram / Idriss" },
+    { name: "Kavos Café", sub: "", st: "qual", label: "À qualifier", pack: "—", contact: "Contact à compléter", neg: "Bayram + Idriss", build: "—", next: "Identifier la catégorie et le contact.", who: "Bayram / Idriss" },
     { name: "Nostraliva", sub: "Monastir · paquet de pitch du 17/07", st: "pause", label: "Sans suite", pack: "Standard 1 190 DT/an (grille de juillet)", contact: "—", neg: "—", build: "Youssef (pitch)", next: "Décider : relancer ou archiver.", who: "Youssef" },
     { name: "MANEKEN", sub: "glacier · prototype cliquable du 07/09", st: "qual", label: "Prototype", pack: "—", contact: "Contact à compléter", neg: "—", build: "Youssef (démo)", next: "Dire si c'est un prospect réel ou une démo générique.", who: "Youssef" }
   ];
@@ -311,8 +311,9 @@
     { id: "D-023", d: "2026-09-06", t: "Les 5 variables d'environnement Caprice sont obligatoires sur Vercel", b: "Sans ADMIN_PASSWORD_HASH (+4), le login de prod refuse tout ; le hash se génère en une ligne, le mot de passe en clair n'est écrit nulle part.", who: "Youssef", p: "caprice a93b796" },
     { id: "D-024", d: "2026-09-07", t: "Cap Grill en production : audit réel, sauvegarde, suppression à la main", b: "État réel relevé (235 commandes = tests et démo) ; sauvegarde dans un schéma backup ; le bloc delete du GO-LIVE est lancé par Youssef à la main ; message de livraison rédigé, à envoyer après nettoyage. Prototype MANEKEN le même jour.", who: "Youssef", p: "9e27ac4 · c2c3204" },
     { id: "D-025", d: "2026-09-08", t: "Recette de production avant démo : « prêt »", b: "Tout le public testé en prod (93 assets, 128 plats × 6 langues, formulaire réel, Lighthouse) ; 4 correctifs déployés ; dashboard connecté à tester à la main.", who: "Youssef", p: "f5d2318 · RAPPORT-RECETTE-2026-09-08.md" },
-    { id: "D-026", d: "2026-09-13", t: "Création de ce système ; états des clients arrêtés", b: "Cap Grill = livré · Caprice = prêt à livrer · Bistrot+ et Art+ = à négocier. Le négociateur prospecte et négocie ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun le menu, Youssef le stock.", who: "Youssef", p: "ops/" },
-    { id: "D-027", d: "2026-09-13", t: "Compte gérant supplémentaire : gabrielle@capgrill.org", b: "Accès gérant complet (5 onglets). Créé par l'API publique de sign-up (.tn refusé par Supabase), donc non confirmé : sql/0008 le confirme et l'ajoute à is_main_admin() — à lancer dans le SQL Editor.", who: "Youssef", p: "sql/0008_admin_gabrielle.sql", flag: "Découvert : l'inscription publique est ouverte sur le projet Supabase — à fermer (O-8)." }
+    { id: "D-026", d: "2026-09-13", t: "Création de ce système ; états des clients arrêtés", b: "Cap Grill = livré · Caprice = prêt à livrer · Bistrot+ et Art+ = à négocier. Bayram et Idriss prospectent et négocient ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun le menu, Youssef le stock.", who: "Youssef", p: "ops/" },
+    { id: "D-027", d: "2026-09-13", t: "Compte gérant supplémentaire : gabrielle@capgrill.org", b: "Accès gérant complet (5 onglets). Créé par l'API publique de sign-up (.tn refusé par Supabase), donc non confirmé : sql/0008 le confirme et l'ajoute à is_main_admin() — à lancer dans le SQL Editor.", who: "Youssef", p: "sql/0008_admin_gabrielle.sql", flag: "Découvert : l'inscription publique est ouverte sur le projet Supabase — à fermer (O-8)." },
+    { id: "D-028", d: "2026-09-14", t: "Les négociateurs ont un nom : Bayram et Idriss", b: "Quatre personnes : Bayram et Idriss portent la prospection et la négociation, Youssef et Haroun le développement. Leur approche : voir le gérant, nommer la catégorie et la douleur, passer la main pour une démo sur le menu réel. Approchés : Cap Grill, Caprice, Art+, Bistrot+ (+ Fares, Captain). À préciser : qui a mené quel rendez-vous.", who: "Youssef", p: "ops/TEAM.md" }
   ];
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
