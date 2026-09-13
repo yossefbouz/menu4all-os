@@ -1,0 +1,359 @@
+<title>Menu4All OS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f5efe6; --bg-soft: #ece5da; --card: #fffdf9; --line: #d9d0c3;
+    --ink: #141416; --ink-2: #4d4a45; --ink-3: #7d786f;
+    --accent: #d84a12; --accent-ink: #ffffff;
+    --ok: #2f8f5b; --ok-bg: #dff2e6; --ready: #2a6fb0; --ready-bg: #dfeaf7;
+    --neg: #a8760c; --neg-bg: #f7ecd0; --qual: #6f6a62; --qual-bg: #e9e4dc;
+    --pause: #55524d; --pause-bg: #e2ddd4;
+    --shadow: 0 1px 0 rgba(20,20,22,.06), 0 8px 24px -16px rgba(20,20,22,.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141416; --bg-soft: #1c1c20; --card: #202024; --line: #2e2e34;
+      --ink: #f5efe6; --ink-2: #c9c2b6; --ink-3: #8f8a81;
+      --accent: #ff5a1f; --accent-ink: #141416;
+      --ok: #6fd39a; --ok-bg: #16311f; --ready: #7dbdf3; --ready-bg: #142a3e;
+      --neg: #f0c45a; --neg-bg: #3a2e0f; --qual: #b3ada3; --qual-bg: #2a2a2f;
+      --pause: #9a958c; --pause-bg: #232326;
+      --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141416; --bg-soft: #1c1c20; --card: #202024; --line: #2e2e34;
+    --ink: #f5efe6; --ink-2: #c9c2b6; --ink-3: #8f8a81;
+    --accent: #ff5a1f; --accent-ink: #141416;
+    --ok: #6fd39a; --ok-bg: #16311f; --ready: #7dbdf3; --ready-bg: #142a3e;
+    --neg: #f0c45a; --neg-bg: #3a2e0f; --qual: #b3ada3; --qual-bg: #2a2a2f;
+    --pause: #9a958c; --pause-bg: #232326;
+    --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; font-size: 15px; line-height: 1.5; }
+  a { color: inherit; }
+  code, .mono { font-family: "JetBrains Mono", "Cascadia Mono", Consolas, monospace; font-size: .86em; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h1 { font-family: "Archivo Black", "Arial Black", sans-serif; font-size: clamp(1.7rem, 3.2vw, 2.4rem); letter-spacing: -.01em; line-height: 1.05; }
+  h2 { font-family: "Archivo Black", "Arial Black", sans-serif; font-size: 1.25rem; letter-spacing: -.005em; }
+  h3 { font-size: 1rem; font-weight: 700; }
+  .eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); font-weight: 600; }
+
+  .shell { display: grid; grid-template-columns: 240px minmax(0, 1fr); min-height: 100vh; }
+  .rail { position: sticky; top: 0; height: 100vh; padding: 28px 22px; border-right: 1px solid var(--line); background: var(--bg-soft); display: flex; flex-direction: column; gap: 26px; }
+  .brand { display: flex; flex-direction: column; gap: 6px; }
+  .brand .wordmark { font-family: "Archivo Black", sans-serif; font-size: 1.15rem; }
+  .brand .wordmark span { color: var(--accent); }
+  .rail nav { display: flex; flex-direction: column; gap: 2px; }
+  .rail nav a { text-decoration: none; padding: 7px 10px; border-radius: 6px; color: var(--ink-2); font-weight: 500; }
+  .rail nav a:hover, .rail nav a:focus-visible { background: var(--card); color: var(--ink); outline: none; }
+  .legend { display: flex; flex-direction: column; gap: 8px; font-size: .84rem; color: var(--ink-2); }
+  .legend .row { display: grid; grid-template-columns: 12px 1fr; gap: 10px; align-items: center; }
+  .dot { width: 12px; height: 12px; border-radius: 50%; }
+  .rail .foot { margin-top: auto; font-size: .78rem; color: var(--ink-3); line-height: 1.45; }
+
+  main { padding: 36px 48px 80px; max-width: 1180px; }
+  header.top { display: flex; flex-direction: column; gap: 10px; padding-bottom: 28px; border-bottom: 1px solid var(--line); margin-bottom: 36px; }
+  header.top p { margin: 0; max-width: 62ch; color: var(--ink-2); }
+  section { margin-bottom: 52px; scroll-margin-top: 24px; }
+  .sec-head { display: flex; align-items: baseline; justify-content: space-between; gap: 16px; margin-bottom: 18px; flex-wrap: wrap; }
+  .sec-head p { margin: 0; color: var(--ink-3); font-size: .9rem; }
+
+  /* Résumé */
+  .stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-bottom: 22px; }
+  .stat { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; }
+  .stat .n { font-family: "Archivo Black", sans-serif; font-size: 1.7rem; line-height: 1; font-variant-numeric: tabular-nums; }
+  .stat .l { font-size: .82rem; color: var(--ink-2); }
+
+  /* Tableau clients */
+  .board { display: flex; flex-direction: column; gap: 8px; }
+  .client { display: grid; grid-template-columns: 6px minmax(160px, 1.2fr) 118px minmax(150px, 1fr) minmax(120px, .9fr) minmax(200px, 1.6fr); gap: 0 16px; align-items: center; background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 12px 16px 12px 0; overflow: hidden; }
+  .client .stripe { align-self: stretch; height: 100%; min-height: 48px; }
+  .client .name { font-weight: 700; }
+  .client .name small { display: block; font-weight: 400; color: var(--ink-3); font-size: .8rem; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; padding: 3px 9px; border-radius: 999px; font-size: .74rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; white-space: nowrap; }
+  .client .cell { font-size: .88rem; color: var(--ink-2); }
+  .client .cell b { color: var(--ink); font-weight: 600; }
+  .client .next { font-size: .88rem; }
+  .client .next .who { color: var(--accent); font-weight: 600; }
+  .st-ok { --c: var(--ok); --cb: var(--ok-bg); } .st-ready { --c: var(--ready); --cb: var(--ready-bg); }
+  .st-neg { --c: var(--neg); --cb: var(--neg-bg); } .st-qual { --c: var(--qual); --cb: var(--qual-bg); }
+  .st-pause { --c: var(--pause); --cb: var(--pause-bg); }
+  .client .stripe { background: var(--c); }
+  .client .pill { background: var(--cb); color: var(--c); }
+  .board-head { display: grid; grid-template-columns: 6px minmax(160px, 1.2fr) 118px minmax(150px, 1fr) minmax(120px, .9fr) minmax(200px, 1.6fr); gap: 0 16px; padding: 0 16px 6px 0; }
+  .board-head span { font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); font-weight: 600; }
+  .board-wrap { overflow-x: auto; }
+  .board-wrap > * { min-width: 860px; }
+
+  /* Équipe */
+  .team { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+  .person { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 18px; display: flex; flex-direction: column; gap: 10px; box-shadow: var(--shadow); }
+  .person .role { color: var(--ink-3); font-size: .84rem; }
+  .person ul { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 6px; font-size: .88rem; color: var(--ink-2); }
+  .person ul b { color: var(--ink); font-weight: 600; }
+  .person .meta { font-size: .78rem; color: var(--ink-3); border-top: 1px solid var(--line); padding-top: 10px; }
+  .pair { margin-top: 14px; padding: 14px 18px; border-left: 3px solid var(--accent); background: var(--bg-soft); border-radius: 0 8px 8px 0; font-size: .92rem; color: var(--ink-2); }
+  .pair b { color: var(--ink); }
+
+  /* Journal des décisions */
+  .filters { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { border: 1px solid var(--line); background: var(--card); color: var(--ink-2); border-radius: 999px; padding: 5px 12px; font: inherit; font-size: .82rem; font-weight: 600; cursor: pointer; }
+  .chip[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+  .chip:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .month { margin-top: 26px; }
+  .month h3 { font-size: .8rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); font-weight: 700; margin-bottom: 10px; }
+  .dlist { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .d { display: grid; grid-template-columns: 96px 76px minmax(0, 1fr) 150px; gap: 0 18px; padding: 12px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .d[hidden] { display: none; }
+  .d .date { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--ink-3); padding-top: 3px; }
+  .d .id { font-family: "JetBrains Mono", monospace; font-size: .78rem; color: var(--accent); font-weight: 500; padding-top: 3px; }
+  .d .title { font-weight: 700; }
+  .d .body { color: var(--ink-2); font-size: .9rem; margin-top: 2px; max-width: 78ch; }
+  .d .flag { margin-top: 6px; font-size: .84rem; padding: 6px 10px; border-radius: 6px; background: var(--neg-bg); color: var(--neg); }
+  .d .who { font-size: .84rem; color: var(--ink-2); padding-top: 3px; }
+  .d .who .proof { display: block; font-family: "JetBrains Mono", monospace; font-size: .74rem; color: var(--ink-3); margin-top: 4px; word-break: break-all; }
+  .d.by-client .who::before { content: "client · "; color: var(--ink-3); }
+  .empty { padding: 20px 0; color: var(--ink-3); }
+
+  /* Questions ouvertes */
+  table.open { width: 100%; border-collapse: collapse; font-size: .9rem; }
+  table.open th { text-align: left; font-size: .7rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); padding: 0 10px 8px 0; border-bottom: 1px solid var(--line); }
+  table.open td { padding: 10px 10px 10px 0; border-bottom: 1px solid var(--line); vertical-align: top; color: var(--ink-2); }
+  table.open td:first-child { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--accent); white-space: nowrap; }
+  table.open td:nth-child(2) { color: var(--ink); }
+  .tbl-wrap { overflow-x: auto; }
+
+  /* Règles */
+  .rules { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; counter-reset: r; }
+  .rule { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 14px 16px 14px 52px; position: relative; font-size: .92rem; color: var(--ink-2); }
+  .rule::before { counter-increment: r; content: counter(r); position: absolute; left: 16px; top: 12px; font-family: "Archivo Black", sans-serif; color: var(--accent); font-size: 1.1rem; }
+  .rule b { color: var(--ink); }
+
+  @media (max-width: 900px) {
+    .shell { grid-template-columns: 1fr; }
+    .rail { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px 20px; gap: 14px; }
+    .rail nav { flex-direction: row; flex-wrap: wrap; }
+    .legend, .rail .foot { display: none; }
+    main { padding: 24px 20px 60px; }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .team, .rules { grid-template-columns: 1fr; }
+    .d { grid-template-columns: 90px minmax(0, 1fr); }
+    .d .id { grid-column: 2; }
+    .d .title, .d .body, .d .flag { grid-column: 2; }
+    .d .who { grid-column: 2; }
+  }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+</style>
+
+<div class="shell">
+  <aside class="rail">
+    <div class="brand">
+      <div class="wordmark">Menu<span>4</span>All · OS</div>
+      <div class="eyebrow">État au 13 sept. 2026</div>
+    </div>
+    <nav aria-label="Sections">
+      <a href="#clients">Clients</a>
+      <a href="#equipe">Équipe</a>
+      <a href="#decisions">Décisions</a>
+      <a href="#ouvertes">À trancher</a>
+      <a href="#regles">Règles</a>
+    </nav>
+    <div class="legend" aria-label="Légende des états">
+      <div class="row"><span class="dot" style="background:var(--ok)"></span>Livré</div>
+      <div class="row"><span class="dot" style="background:var(--ready)"></span>Prêt à livrer</div>
+      <div class="row"><span class="dot" style="background:var(--neg)"></span>À négocier</div>
+      <div class="row"><span class="dot" style="background:var(--qual)"></span>À qualifier / prototype</div>
+      <div class="row"><span class="dot" style="background:var(--pause)"></span>Sans suite</div>
+    </div>
+    <div class="foot">Source de vérité : <code>ops/*.md</code> dans le dépôt. Cette page en est le rendu visuel.</div>
+  </aside>
+
+  <main>
+    <header class="top">
+      <div class="eyebrow">Système d'exploitation de l'équipe</div>
+      <h1>Qui a décidé quoi, quand — et où en est chaque client</h1>
+      <p>Reconstitué depuis les 68 commits du dépôt, le dépôt Caprice, les rapports et les décks, du 14 juillet au 13 septembre 2026. À partir d'aujourd'hui, chaque décision s'écrit le jour même.</p>
+    </header>
+
+    <section id="clients">
+      <div class="sec-head"><h2>Clients</h2><p>Un état, un responsable de la prochaine action, par établissement.</p></div>
+      <div class="stats">
+        <div class="stat"><span class="n">1</span><span class="l">livré — Cap Grill, en ligne sur capgrill.org</span></div>
+        <div class="stat"><span class="n">1</span><span class="l">prêt à livrer — Caprice (menu + stock)</span></div>
+        <div class="stat"><span class="n">4</span><span class="l">à négocier — Art+, Bistrot+, Fares, Captain</span></div>
+        <div class="stat"><span class="n mono" style="font-size:1.35rem;padding-top:4px">≈ 5 100–5 600 DT</span><span class="l">pipeline à négocier (grille d'août)</span></div>
+      </div>
+      <div class="board-wrap">
+        <div class="board-head"><span></span><span>Établissement</span><span>État</span><span>Pack · contact</span><span>Négocié · construit</span><span>Prochaine action</span></div>
+        <div class="board" id="board"></div>
+      </div>
+    </section>
+
+    <section id="equipe">
+      <div class="sec-head"><h2>Équipe</h2><p>Ce que chacun a livré, avec la preuve git.</p></div>
+      <div class="team">
+        <article class="person">
+          <h3>Youssef Bouzgarrou</h3>
+          <div class="role">Co-fondateur — produit, développement, analyse business, décks &amp; rapports</div>
+          <ul>
+            <li><b>Cap Grill</b> de bout en bout : carte réelle, backend Supabase + RLS, loops 1 et 3 à 10, capgrill.org, mise en production, recette du 08/09.</li>
+            <li><b>Caprice</b> : le module de stock (registre, mouvements, projection 14 jours, suggestions de commande) + déck 16 slides.</li>
+            <li><b>Pilotage</b> : master plan (5 clients, 3 catégories, packs), dossier partenaire, présentations client FR/EN, rapport hébergement, proposition ART, prototype MANEKEN.</li>
+          </ul>
+          <div class="meta mono">61 commits ici · 3 dans caprice · depuis le 14/07</div>
+        </article>
+        <article class="person">
+          <h3>Haroun Rhim (Kafteji)</h3>
+          <div class="role">Co-fondateur — développement</div>
+          <ul>
+            <li><b>Cap Grill</b> : plan de salle (loop 2), compte gérant créé dans Supabase, correction du bug d'affichage <code>hidden</code> qui bloquait panier et connexion, déck de formation du personnel (15 slides) + PDF, correction des 6 décks qui ne défilaient plus.</li>
+            <li><b>Caprice</b> : le menu digital — site public FR/EN/AR, 16 catégories avec photos, admin + éditeur de prix, fonctions Vercel, mise en ligne et correctif du login en prod.</li>
+          </ul>
+          <div class="meta mono">7 commits ici · 4 dans caprice · depuis le 10/08</div>
+        </article>
+        <article class="person">
+          <h3>Le négociateur <span style="font-weight:400;color:var(--ink-3)">(prénom à compléter)</span></h3>
+          <div class="role">Prospection et négociation avec les établissements</div>
+          <ul>
+            <li><b>Cap Grill</b> — Si Slim : signé, Gold 1 500 DT.</li>
+            <li><b>Caprice</b> : accord obtenu, menu + stock construits.</li>
+            <li><b>Art+</b> (Flashback+ et R+) — Amine Dababi : contact pris, proposition prête, négociation à mener.</li>
+            <li><b>Bistrot+</b>, <b>Fares</b>, <b>Captain</b> (Fraj Chrif), <b>Kavos</b> : identifiés, à négocier ou à qualifier.</li>
+          </ul>
+          <div class="meta">Travail terrain, sans trace git — à consigner dans le journal au fil de l'eau.</div>
+        </article>
+      </div>
+      <div class="pair"><b>Cap Grill, un travail à deux.</b> Youssef a porté l'architecture, la carte, le backend et huit loops ; Haroun a livré le plan de salle, le compte gérant, la formation et les correctifs transversaux. Marqué <b>livré</b> le 13/09/2026. Sur <b>Caprice</b>, la répartition est nette : Haroun le menu, Youssef le stock.</div>
+    </section>
+
+    <section id="decisions">
+      <div class="sec-head"><h2>Journal des décisions</h2><p>27 décisions, du 14/07 au 13/09. Filtrer par auteur.</p></div>
+      <div class="filters" role="group" aria-label="Filtrer par auteur" id="filters">
+        <button class="chip" aria-pressed="true" data-f="all">Toutes</button>
+        <button class="chip" aria-pressed="false" data-f="Youssef">Youssef</button>
+        <button class="chip" aria-pressed="false" data-f="Haroun">Haroun</button>
+        <button class="chip" aria-pressed="false" data-f="Si Slim">Demandes du client</button>
+        <button class="chip" aria-pressed="false" data-f="flag">Avec un point à trancher</button>
+      </div>
+      <div id="journal"></div>
+    </section>
+
+    <section id="ouvertes">
+      <div class="sec-head"><h2>À trancher</h2><p>Les décisions qui n'ont pas encore été prises.</p></div>
+      <div class="tbl-wrap">
+        <table class="open">
+          <thead><tr><th>#</th><th>Question</th><th>Qui tranche</th><th>Depuis</th></tr></thead>
+          <tbody>
+            <tr><td>O-1</td><td>Grille tarifaire officielle : août (800 / 1 000 / 1 500 / 6 000 DT) ou septembre (1 000 / 1 300 / 2 000 / 7 500 DT) ?</td><td>Youssef</td><td>D-019 · 02/09</td></tr>
+            <tr><td>O-2</td><td>Hébergement à la remise officielle : Cloudflare Pages (0 DT, commercial autorisé) ou un seul Vercel Pro pour tout le portefeuille ?</td><td>Youssef + Haroun</td><td>D-015 · 21/08</td></tr>
+            <tr><td>O-3</td><td>Architecture standard des prochains clients : modèle Cap Grill (RLS + auth Supabase) ou modèle Caprice (API serveur + JWT) ?</td><td>Youssef + Haroun</td><td>D-021 · 03/09</td></tr>
+            <tr><td>O-4</td><td>Caprice : pack vendu, prix, échéancier, contact du gérant, date de remise.</td><td>Négociateur</td><td>—</td></tr>
+            <tr><td>O-5</td><td>Remise sur la 2ᵉ salle Art+ (Flashback+ / R+).</td><td>Youssef</td><td>D-006 · 04/08</td></tr>
+            <tr><td>O-6</td><td>Nostraliva et MANEKEN : prospects réels ou archives ?</td><td>Youssef</td><td>—</td></tr>
+            <tr><td>O-7</td><td>Domaine capgrill.org et Search Console sur le compte personnel : régulariser ou documenter l'exception à la règle des comptes ?</td><td>Youssef</td><td>D-010 · 08/08</td></tr>
+            <tr><td>O-8</td><td>Fermer l'inscription publique sur le projet Supabase capgrill (découvert le 13/09 : ouverte).</td><td>Youssef</td><td>D-027 · 13/09</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="regles">
+      <div class="sec-head"><h2>Règles</h2><p>Quatre, pas plus.</p></div>
+      <div class="rules">
+        <div class="rule"><b>Une décision non écrite n'existe pas.</b> Un prix, un périmètre, un compte, une architecture : une ligne dans <code>ops/DECISIONS.md</code> le jour même — date, décision, qui, pourquoi, preuve.</div>
+        <div class="rule"><b>Un client, un état, un responsable.</b> Chaque établissement a un seul état (livré, prêt, à négocier…) et une seule personne qui porte la prochaine action.</div>
+        <div class="rule"><b>On signe.</b> Youssef, Haroun, le négociateur, le client par son nom. Jamais « on » ni « l'équipe ».</div>
+        <div class="rule"><b>La preuve vit dans le dépôt.</b> Un hash de commit, un fichier <code>docs/</code>, un rapport. Si c'était un appel ou un WhatsApp, une phrase qui le dit.</div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<script>
+(function () {
+  var CLIENTS = [
+    { name: "Cap Grill", sub: "Marina Cap Monastir · restaurant gastronomique", st: "ok", label: "Livré", pack: "Gold — 1 500 DT (40/30/30)", contact: "Si Slim", neg: "Négociateur", build: "Youssef + Haroun", next: "Lancer le bloc de suppression GO-LIVE, puis envoyer le message de livraison.", who: "Youssef" },
+    { name: "Caprice", sub: "café · menu digital + gestion de stock", st: "ready", label: "Prêt à livrer", pack: "Pack et prix à inscrire", contact: "Contact à compléter", neg: "Négociateur", build: "Haroun (menu) + Youssef (stock)", next: "Vérifier le login admin en prod (5 variables Vercel), fixer la date de remise.", who: "Haroun" },
+    { name: "Art+ — Flashback+ et R+", sub: "cafés d'études · 2 salles", st: "neg", label: "À négocier", pack: "Gold ×2 + tableau des tables — ≈ 3 000 DT", contact: "Amine Dababi", neg: "Négociateur", build: "—", next: "Mener le rendez-vous avec la proposition ART (clients/art/).", who: "Négociateur" },
+    { name: "Bistrot+", sub: "local premium · petite surface, prix mouvants", st: "neg", label: "À négocier", pack: "Gold — 1 500 DT ou 139 DT/mois", contact: "Contact à compléter", neg: "Négociateur", build: "—", next: "Obtenir ~15 photos du menu + nom du gérant pour préparer la démo.", who: "Négociateur" },
+    { name: "Fares", sub: "menu design seul", st: "neg", label: "À négocier", pack: "Design seul — 300 DT", contact: "Fares", neg: "Négociateur", build: "—", next: "Récupérer le menu complet + logo.", who: "Négociateur" },
+    { name: "Captain", sub: "QR sans internet", st: "neg", label: "À négocier", pack: "300 à 800 DT selon option O1/O2/O3", contact: "Fraj Chrif", neg: "Négociateur", build: "—", next: "Tenir le RDV, choisir l'option.", who: "Négociateur" },
+    { name: "Kavos Café", sub: "", st: "qual", label: "À qualifier", pack: "—", contact: "Contact à compléter", neg: "Négociateur", build: "—", next: "Identifier la catégorie et le contact.", who: "Négociateur" },
+    { name: "Nostraliva", sub: "Monastir · paquet de pitch du 17/07", st: "pause", label: "Sans suite", pack: "Standard 1 190 DT/an (grille de juillet)", contact: "—", neg: "—", build: "Youssef (pitch)", next: "Décider : relancer ou archiver.", who: "Youssef" },
+    { name: "MANEKEN", sub: "glacier · prototype cliquable du 07/09", st: "qual", label: "Prototype", pack: "—", contact: "Contact à compléter", neg: "—", build: "Youssef (démo)", next: "Dire si c'est un prospect réel ou une démo générique.", who: "Youssef" }
+  ];
+  var D = [
+    { id: "D-001", d: "2026-07-14", m: "Juillet 2026 — fondations", t: "Un seul code, un JSON par client", b: "Menu4All Base : onboarder un client = un dossier de JSON (marque, menu, config) + assets, sans toucher au code. Mobile-first, 5 langues + RTL, QR brandé, zéro CDN.", who: "Youssef", p: "menu4all-prototype-loop-prompt.md" },
+    { id: "D-002", d: "2026-07-17", t: "Le pattern « paquet d'acquisition » par client", b: "clients/<slug>/ : recherche OBSERVED/ASSUMED, brand.json, menu-vision.json, déck, plan de vente, handoff. Premier exemplaire : Nostraliva. Grille de lancement 690 / 1 190 / 1 890 DT/an, échéancier 40 % · 30 % · 30 %.", who: "Youssef", p: "caec030" },
+    { id: "D-003", d: "2026-07-26", t: "Cap Grill : 1 500 DT en une fois, site sans framework", b: "Offre unique (vitrine + carte FR/EN/AR + QR + mise en ligne), même échéancier. HTML/CSS/JS pur, tout le contenu dans js/data.js.", who: "Youssef", p: "cf1794b · docs/OFFER-1500.md" },
+    { id: "D-004", d: "2026-07-27", t: "Règles techniques transversales", b: "Jamais de classes ad-* (préfixe mg-) ; noindex tant que le patron n'a pas validé ; page 404 brandée.", who: "Youssef", p: "4aa4af3" },
+    { id: "D-005", d: "2026-07-31", t: "Aucun prix inventé : la carte réelle fait foi", b: "Prix transcrits des 4 photos des ardoises ; lignes incertaines marquées (?) à valider par Si Slim avant facturation. Les estimations sous-évaluaient la carte de 15 à 90 %.", who: "Youssef", p: "09fe9af · docs/CARTE-REELLE-2026-07-31.md" },
+    { id: "D-006", d: "2026-08-04", m: "Août 2026 — le plan, puis Cap Grill Gold", t: "Master plan approuvé : 5 clients, 3 catégories, packs officiels", b: "Bronze 800 · Silver 1 000 · Gold 1 500 · Diamond 6 000 DT (ou 79 / 99 / 139 / 549 DT/mois) ; Design seul 300 DT ; Maintenance 50–100 DT / 2 mois. Ordre : Cap Grill → Fares → Bistrot+ → Flashback+/R+ → Captain.", who: "Youssef", p: "8d9012f · MASTER-PLAN-2026-08.md" },
+    { id: "D-007", d: "2026-08-05", t: "Loop 1 : Supabase, 6 langues, WiFi par QR", b: "Backend Supabase gratuit avec bascule automatique en prototype local ; 6ᵉ langue offerte ; 2 QR par table ; WhatsApp en secours.", who: "Youssef", p: "8478454" },
+    { id: "D-008", d: "2026-08-06", t: "Modèle de sécurité : clés publiques + RLS", b: "URL et clé publishable dans le code ; un visiteur ne peut qu'insérer, rien lire ; service_role jamais dans le dépôt ; jamais de .select() après un insert client.", who: "Youssef", p: "38d4551 · 9a65880" },
+    { id: "D-009", d: "2026-08-07", t: "L'hébergement se vend comme un service payant", b: "Page « Vercel Pro » à 99 DT/an réels ; abonnement 50 DT/mois dès la 2ᵉ année ; prix 1 500 DT détaillé en 6 lignes ; déck FR + EN.", who: "Youssef", p: "144d033 · 4d364d6 · 90b3007" },
+    { id: "D-010", d: "2026-08-08", t: "Règle des comptes : une identité Menu4All, rien d'autre", b: "youssefbouzgarrouyb1@gmail.com (GitHub -droid, Vercel, Supabase) = Menu4All uniquement, partagé par les deux fondateurs. Committer avec cet email, sinon Vercel ne construit pas.", who: "Youssef", p: "358a671", flag: "Écart : capgrill.org et la Search Console sont sur le compte personnel (O-7)." },
+    { id: "D-011", d: "2026-08-10", t: "Plan de salle : le gérant libère la table à la main", b: "Aucun automatisme : une table redevient libre quand la caisse clique « Libérer la table ». Compte admin@capgrill.tn créé. Règle CSS .x[hidden]{display:none}.", who: "Haroun", p: "96e5804 · 8d92986" },
+    { id: "D-012", d: "2026-08-12", t: "Le staff crée ; une commande envoyée ne se modifie pas", b: "Saisie serveur des commandes et réservations ; « modifier » = nouvelle commande sur la même table, erreur = annuler + refaire ; réservation téléphone née confirmée ; compte partagé second admin (sql/0003) ; plats au poids jamais commandables en ligne.", who: "Youssef", p: "6ebb7e3 · 0b5b81a · RAPPORT-TESTS 13/13" },
+    { id: "D-013", d: "2026-08-13", t: "Formation en déck ; jamais smooth + scroll-snap", b: "Support de formation 15 slides = livrable standard ; règle technique pour tous les décks.", who: "Haroun", p: "691f0da · da103db" },
+    { id: "D-014", d: "2026-08-21", t: "La carte de référence reste dans le code, la base ne stocke que les exceptions", b: "js/data.js = référence ; menu_overrides = prix du jour et ruptures, supprimés au retour à la carte. Journal = relecture des commandes servies. Espace gérant refait pour le téléphone.", who: "Youssef", p: "521d84f" },
+    { id: "D-015", d: "2026-08-21", t: "Hébergement gratuit assumé ; choix reporté à la remise", b: "Le gratuit tient ×30 ; le risque est la clause non commerciale de Vercel Hobby. À la remise : Cloudflare Pages ou un Vercel Pro pour tout le portefeuille. Ping hebdo Supabase + export CSV avant fermeture longue.", who: "Youssef", p: "3367a1f · RAPPORT-HEBERGEMENT-2026-08.md", flag: "Décision business encore ouverte (O-2)." },
+    { id: "D-016", d: "2026-08-23", t: "Graphiques dessinés à la main, jamais deux échelles", b: "SVG maison, une seule échelle Y, étiquettes sélectives, jumeau tabulaire. Données de démo (194 commandes) en prod pour la présentation au patron.", who: "Youssef", p: "a645400 · DEMO-2026-08-23.md" },
+    { id: "D-017", d: "2026-08-24", t: "Deux niveaux d'accès, et la commande client désactivée", b: "Compte service@capgrill.tn (commandes, plan, réservations) sans Journal ni La Carte — barrière SQL sur la carte, Journal masqué par l'interface seulement. selfOrdering:false : le QR ouvre une carte consultative, les serveurs saisissent.", who: "Si Slim", who2: "Youssef", p: "1de58ea · e0097d3 · sql/0006" },
+    { id: "D-018", d: "2026-08-27", t: "60 tables, réservations visibles, transfert de table", b: "Le restaurant compte 60 tables ; toute réservation non annulée du jour s'affiche sur sa tuile ; transfert sans recréer la commande.", who: "Si Slim", who2: "Youssef", p: "2995bf9 · sql/0007" },
+    { id: "D-019", d: "2026-09-02", m: "Septembre 2026 — mise en ligne, Caprice, nouveaux prospects", t: "Proposition ART avec une NOUVELLE grille tarifaire", b: "Bronze 1 000 · Silver 1 300 · Gold 2 000 · Diamond 7 500 DT, design 400 DT, maintenance 100 DT/mois, hébergement et QR inclus — au-dessus de la grille d'août.", who: "Youssef", p: "clients/art/", flag: "À trancher : quelle grille est officielle depuis septembre ? (O-1)" },
+    { id: "D-020", d: "2026-09-03", t: "capgrill.org, visible sur Google avant la validation des prix", b: "Domaine chez Cloudflare (DNS only → Vercel), www et vercel.app redirigés en 308, QR imprimés préservés. Référencement ouvert à la demande de Youssef, avant la validation des prix par le patron — en connaissance de cause.", who: "Youssef", p: "3cbf7a9" },
+    { id: "D-021", d: "2026-09-03", t: "Caprice : dépôt séparé, architecture différente de Cap Grill", b: "Dépôt et projet Vercel propres ; admin par fonctions serveur (mot de passe haché + JWT, clé service côté serveur) et non par RLS + auth Supabase. Menu FR/EN/AR par catégories avec photos.", who: "Haroun", p: "caprice cd80966 · e4d9a80", flag: "Deux architectures à maintenir : laquelle devient le standard ? (O-3)" },
+    { id: "D-022", d: "2026-09-05", t: "Répartition Caprice : Haroun le menu, Youssef le stock", b: "Module de stock avec un modèle de réapprovisionnement transparent (position, point de commande, dates de danger/rupture, suggestion) ; « historique insuffisant » plutôt qu'une fausse précision ; déck client 16 slides.", who: "Youssef", p: "caprice 9eef760 · INVENTORY_PLAN.md" },
+    { id: "D-023", d: "2026-09-06", t: "Les 5 variables d'environnement Caprice sont obligatoires sur Vercel", b: "Sans ADMIN_PASSWORD_HASH (+4), le login de prod refuse tout ; le hash se génère en une ligne, le mot de passe en clair n'est écrit nulle part.", who: "Youssef", p: "caprice a93b796" },
+    { id: "D-024", d: "2026-09-07", t: "Cap Grill en production : audit réel, sauvegarde, suppression à la main", b: "État réel relevé (235 commandes = tests et démo) ; sauvegarde dans un schéma backup ; le bloc delete du GO-LIVE est lancé par Youssef à la main ; message de livraison rédigé, à envoyer après nettoyage. Prototype MANEKEN le même jour.", who: "Youssef", p: "9e27ac4 · c2c3204" },
+    { id: "D-025", d: "2026-09-08", t: "Recette de production avant démo : « prêt »", b: "Tout le public testé en prod (93 assets, 128 plats × 6 langues, formulaire réel, Lighthouse) ; 4 correctifs déployés ; dashboard connecté à tester à la main.", who: "Youssef", p: "f5d2318 · RAPPORT-RECETTE-2026-09-08.md" },
+    { id: "D-026", d: "2026-09-13", t: "Création de ce système ; états des clients arrêtés", b: "Cap Grill = livré · Caprice = prêt à livrer · Bistrot+ et Art+ = à négocier. Le négociateur prospecte et négocie ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun le menu, Youssef le stock.", who: "Youssef", p: "ops/" },
+    { id: "D-027", d: "2026-09-13", t: "Compte gérant supplémentaire : gabrielle@capgrill.org", b: "Accès gérant complet (5 onglets). Créé par l'API publique de sign-up (.tn refusé par Supabase), donc non confirmé : sql/0008 le confirme et l'ajoute à is_main_admin() — à lancer dans le SQL Editor.", who: "Youssef", p: "sql/0008_admin_gabrielle.sql", flag: "Découvert : l'inscription publique est ouverte sur le projet Supabase — à fermer (O-8)." }
+  ];
+
+  function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
+
+  var board = document.getElementById("board");
+  board.innerHTML = CLIENTS.map(function (c) {
+    return '<div class="client st-' + c.st + '"><div class="stripe"></div>' +
+      '<div class="name">' + esc(c.name) + (c.sub ? '<small>' + esc(c.sub) + '</small>' : '') + '</div>' +
+      '<div><span class="pill">' + esc(c.label) + '</span></div>' +
+      '<div class="cell"><b>' + esc(c.pack) + '</b><br>' + esc(c.contact) + '</div>' +
+      '<div class="cell">' + esc(c.neg) + '<br><b>' + esc(c.build) + '</b></div>' +
+      '<div class="next">' + esc(c.next) + ' <span class="who">— ' + esc(c.who) + '</span></div></div>';
+  }).join("");
+
+  var journal = document.getElementById("journal");
+  var html = "", month = "";
+  D.forEach(function (x) {
+    if (x.m && x.m !== month) { if (month) html += "</div></div>"; month = x.m; html += '<div class="month"><h3>' + esc(x.m) + '</h3><div class="dlist">'; }
+    var who = esc(x.who) + (x.who2 ? " · " + esc(x.who2) : "");
+    html += '<div class="d' + (x.who === "Si Slim" ? " by-client" : "") + '" data-who="' + esc(x.who) + (x.who2 ? "," + esc(x.who2) : "") + '" data-flag="' + (x.flag ? "1" : "0") + '">' +
+      '<div class="date">' + esc(x.d) + '</div><div class="id">' + esc(x.id) + '</div>' +
+      '<div><div class="title">' + esc(x.t) + '</div><div class="body">' + esc(x.b) + '</div>' + (x.flag ? '<div class="flag">' + esc(x.flag) + '</div>' : '') + '</div>' +
+      '<div class="who">' + who + '<span class="proof">' + esc(x.p) + '</span></div></div>';
+  });
+  html += "</div></div>";
+  journal.innerHTML = html;
+
+  var chips = document.querySelectorAll("#filters .chip");
+  chips.forEach(function (ch) {
+    ch.addEventListener("click", function () {
+      chips.forEach(function (o) { o.setAttribute("aria-pressed", o === ch ? "true" : "false"); });
+      var f = ch.dataset.f;
+      document.querySelectorAll("#journal .d").forEach(function (row) {
+        var show = f === "all" || (f === "flag" ? row.dataset.flag === "1" : row.dataset.who.split(",").indexOf(f) !== -1);
+        row.hidden = !show;
+      });
+      document.querySelectorAll("#journal .month").forEach(function (mo) {
+        var any = mo.querySelectorAll(".d:not([hidden])").length > 0;
+        mo.style.display = any ? "" : "none";
+      });
+    });
+  });
+})();
+</script>
