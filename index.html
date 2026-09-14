@@ -49,6 +49,8 @@
   .rail nav { display: flex; flex-direction: column; gap: 2px; }
   .rail nav a { text-decoration: none; padding: 7px 10px; border-radius: 6px; color: var(--ink-2); font-weight: 500; }
   .rail nav a:hover, .rail nav a:focus-visible { background: var(--card); color: var(--ink); outline: none; }
+  .rail nav.pages { border-top: 1px solid var(--line); padding-top: 12px; }
+  .rail nav.pages a { color: var(--accent); font-weight: 600; }
   .legend { display: flex; flex-direction: column; gap: 8px; font-size: .84rem; color: var(--ink-2); }
   .legend .row { display: grid; grid-template-columns: 12px 1fr; gap: 10px; align-items: center; }
   .dot { width: 12px; height: 12px; border-radius: 50%; }
@@ -161,6 +163,10 @@
       <a href="#ouvertes">À trancher</a>
       <a href="#regles">Règles</a>
     </nav>
+    <nav aria-label="Pages" class="pages">
+      <a href="deux-secteurs.html">Plan deux secteurs + simulateur →</a>
+      <a href="presentation-deux-secteurs.html">Présentation d'équipe →</a>
+    </nav>
     <div class="legend" aria-label="Légende des états">
       <div class="row"><span class="dot" style="background:var(--ok)"></span>Livré</div>
       <div class="row"><span class="dot" style="background:var(--ready)"></span>Prêt à livrer</div>
@@ -225,12 +231,22 @@
           </ul>
           <div class="meta"><b>Leur approche :</b> voir le gérant en direct, nommer la catégorie et la douleur du quotidien, puis passer la main à Youssef et Haroun pour une démo sur le menu réel. Cinq à six établissements approchés. Qui a mené quel rendez-vous : à préciser par eux.</div>
         </article>
+        <article class="person">
+          <h3>Aziz &amp; Drago</h3>
+          <div class="role">Secteur Marketing — contenus, réseaux sociaux (rejoignent en septembre 2026 ; rôles exacts à confirmer, O-13)</div>
+          <ul>
+            <li><b>Première mission :</b> le kit marketing v1 (6 templates de publication, calendrier type, check-list shooting, modèle de rapport) avec Haroun.</li>
+            <li><b>Premiers clients à proposer :</b> Présence à Cap Grill (livré, photos déjà en ligne) et à Caprice, avec Idriss.</li>
+          </ul>
+          <div class="meta">Le prénom « Drago » est à confirmer.</div>
+        </article>
       </div>
+      <div class="pair" style="border-left-color: var(--neg)"><b>Depuis le 14/09 : six personnes, deux secteurs (proposé, D-029).</b> <b>Web</b> — Youssef (responsable), Bayram, Haroun. <b>Marketing</b> — Haroun (responsable proposé), Idriss, Aziz, Drago. Tout membre peut apporter et signer un client dans les deux secteurs ; on se paie par parts sur chaque contrat encaissé. <a href="deux-secteurs.html">Le plan et le simulateur de parts →</a></div>
       <div class="pair"><b>Cap Grill, un travail à deux.</b> Youssef a porté l'architecture, la carte, le backend et huit loops ; Haroun a livré le plan de salle, le compte gérant, la formation et les correctifs transversaux. Marqué <b>livré</b> le 13/09/2026. Sur <b>Caprice</b>, la répartition est nette : Haroun le menu, Youssef le stock.</div>
     </section>
 
     <section id="decisions">
-      <div class="sec-head"><h2>Journal des décisions</h2><p>28 décisions, du 14/07 au 14/09. Filtrer par auteur.</p></div>
+      <div class="sec-head"><h2>Journal des décisions</h2><p>29 décisions, du 14/07 au 14/09. Filtrer par auteur.</p></div>
       <div class="filters" role="group" aria-label="Filtrer par auteur" id="filters">
         <button class="chip" aria-pressed="true" data-f="all">Toutes</button>
         <button class="chip" aria-pressed="false" data-f="Youssef">Youssef</button>
@@ -255,6 +271,11 @@
             <tr><td>O-6</td><td>Nostraliva et MANEKEN : prospects réels ou archives ?</td><td>Youssef</td><td>—</td></tr>
             <tr><td>O-7</td><td>Domaine capgrill.org et Search Console sur le compte personnel : régulariser ou documenter l'exception à la règle des comptes ?</td><td>Youssef</td><td>D-010 · 08/08</td></tr>
             <tr><td>O-8</td><td>Fermer l'inscription publique sur le projet Supabase capgrill (découvert le 13/09 : ouverte).</td><td>Youssef</td><td>D-027 · 13/09</td></tr>
+            <tr><td>O-9</td><td>Rémunération : appliquer la grille rétroactivement à Cap Grill (1 500 DT) et Caprice ? Proposition : oui pour Signature et Apport, le reste tel que déjà convenu.</td><td>Youssef + Haroun + Bayram + Idriss</td><td>D-029 · 14/09</td></tr>
+            <tr><td>O-10</td><td>Parts fondateurs sur le surplus de la caisse commune en fin d'année.</td><td>Youssef + Haroun</td><td>D-029 · 14/09</td></tr>
+            <tr><td>O-11</td><td>Remise « deux secteurs » (site + marketing) : 10 % sur la ligne la moins chère ?</td><td>Youssef + Haroun</td><td>D-029 · 14/09</td></tr>
+            <tr><td>O-12</td><td>Budget publicitaire toujours payé par le client, jamais avancé par la caisse ?</td><td>Haroun</td><td>D-029 · 14/09</td></tr>
+            <tr><td>O-13</td><td>Prénoms et rôles exacts des nouveaux (Aziz, Drago, Idriss) ; responsable Marketing confirmé ?</td><td>Youssef</td><td>D-029 · 14/09</td></tr>
           </tbody>
         </table>
       </div>
@@ -265,7 +286,7 @@
       <div class="rules">
         <div class="rule"><b>Une décision non écrite n'existe pas.</b> Un prix, un périmètre, un compte, une architecture : une ligne dans <code>ops/DECISIONS.md</code> le jour même — date, décision, qui, pourquoi, preuve.</div>
         <div class="rule"><b>Un client, un état, un responsable.</b> Chaque établissement a un seul état (livré, prêt, à négocier…) et une seule personne qui porte la prochaine action.</div>
-        <div class="rule"><b>On signe.</b> Youssef, Haroun, Bayram, Idriss, le client par son nom. Jamais « on » ni « l'équipe ».</div>
+        <div class="rule"><b>On signe.</b> Youssef, Haroun, Bayram, Idriss, Aziz, Drago, le client par son nom. Jamais « on » ni « l'équipe ».</div>
         <div class="rule"><b>La preuve vit dans le dépôt.</b> Un hash de commit, un fichier <code>docs/</code>, un rapport. Si c'était un appel ou un WhatsApp, une phrase qui le dit.</div>
       </div>
     </section>
@@ -313,7 +334,8 @@
     { id: "D-025", d: "2026-09-08", t: "Recette de production avant démo : « prêt »", b: "Tout le public testé en prod (93 assets, 128 plats × 6 langues, formulaire réel, Lighthouse) ; 4 correctifs déployés ; dashboard connecté à tester à la main.", who: "Youssef", p: "f5d2318 · RAPPORT-RECETTE-2026-09-08.md" },
     { id: "D-026", d: "2026-09-13", t: "Création de ce système ; états des clients arrêtés", b: "Cap Grill = livré · Caprice = prêt à livrer · Bistrot+ et Art+ = à négocier. Bayram et Idriss prospectent et négocient ; Youssef et Haroun développent côte à côte ; sur Caprice, Haroun le menu, Youssef le stock.", who: "Youssef", p: "ops/" },
     { id: "D-027", d: "2026-09-13", t: "Compte gérant supplémentaire : gabrielle@capgrill.org", b: "Accès gérant complet (5 onglets). Créé par l'API publique de sign-up (.tn refusé par Supabase), donc non confirmé : sql/0008 le confirme et l'ajoute à is_main_admin() — à lancer dans le SQL Editor.", who: "Youssef", p: "sql/0008_admin_gabrielle.sql", flag: "Découvert : l'inscription publique est ouverte sur le projet Supabase — à fermer (O-8)." },
-    { id: "D-028", d: "2026-09-14", t: "Les négociateurs ont un nom : Bayram et Idriss", b: "Quatre personnes : Bayram et Idriss portent la prospection et la négociation, Youssef et Haroun le développement. Leur approche : voir le gérant, nommer la catégorie et la douleur, passer la main pour une démo sur le menu réel. Approchés : Cap Grill, Caprice, Art+, Bistrot+ (+ Fares, Captain). À préciser : qui a mené quel rendez-vous.", who: "Youssef", p: "ops/TEAM.md" }
+    { id: "D-028", d: "2026-09-14", t: "Les négociateurs ont un nom : Bayram et Idriss", b: "Quatre personnes : Bayram et Idriss portent la prospection et la négociation, Youssef et Haroun le développement. Leur approche : voir le gérant, nommer la catégorie et la douleur, passer la main pour une démo sur le menu réel. Approchés : Cap Grill, Caprice, Art+, Bistrot+ (+ Fares, Captain). À préciser : qui a mené quel rendez-vous.", who: "Youssef", p: "ops/TEAM.md" },
+    { id: "D-029", d: "2026-09-14", t: "Deux secteurs, six personnes, rémunération par parts — PROPOSÉ, à valider", b: "Web (Youssef, Bayram, Haroun) et Marketing (Haroun, Idriss, Aziz, Drago) vendent aux mêmes clients ; tout membre peut apporter et signer. Chaque contrat encaissé se découpe en parts : en une fois Signature 15 · Apport 5 · Socle 10 · Réalisation 50 · Caisse 20 ; récurrent Signature 10 (12 mois) · Apport 5 (12 mois) · Réalisation 60 · Caisse 25. Offres marketing proposées : Présence 250 DT/mois, Croissance 450 DT/mois, Shooting 300, Lancement 600.", who: "Youssef", p: "ops/PLAN-2026-09-DEUX-SECTEURS.md · ops/REMUNERATION.md", flag: "À valider en réunion la semaine du 15/09 (O-9 à O-13). Tant que la ligne dit « PROPOSÉ », rien n'est dû à personne sur cette base." }
   ];
 
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }

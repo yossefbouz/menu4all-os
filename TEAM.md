@@ -10,7 +10,18 @@
 | **Haroun Rhim (Kafteji)** | Co-fondateur — développement | Août 2026 | `Kaftej1` (7 commits ici) · `Haroun Rhim <harounkafteji@gmail.com>` (4 commits dans `caprice`) |
 | **Bayram** | Négociateur — prospection terrain et négociation avec les établissements | Août 2026 | — (pas de commits, travail terrain) |
 | **Idriss** | Négociateur — prospection terrain et négociation avec les établissements | Août 2026 | — (pas de commits, travail terrain) |
+| **Aziz** | Secteur Marketing (contenus, réseaux sociaux) — *rôle exact à confirmer* | Septembre 2026 | — |
+| **Drago** *(prénom à confirmer)* | Secteur Marketing (contenus, réseaux sociaux) — *rôle exact à confirmer* | Septembre 2026 | — |
 | Claude (Opus 5 / Sonnet 5 / Fable 5.1) | Assistant de développement en binôme, co-auteur des commits | Juillet 2026 | `Co-Authored-By` dans les messages de commit |
+
+### Organisation proposée le 14/09/2026 (D-029, à valider)
+
+| Secteur | Membres | Responsable proposé |
+|---|---|---|
+| **Web** — sites, cartes, QR, espace gérant, modules, maintenance | Youssef, Bayram, Haroun | Youssef |
+| **Marketing** — réseaux sociaux, contenus, shooting, campagnes | Haroun, Idriss, Aziz, Drago | Haroun |
+
+Tout membre peut apporter et signer un client dans les deux secteurs. Rémunération par parts : voir [REMUNERATION.md](REMUNERATION.md) ; plan complet : [PLAN-2026-09-DEUX-SECTEURS.md](PLAN-2026-09-DEUX-SECTEURS.md).
 
 Compte partagé de l'entreprise : `youssefbouzgarrouyb1@gmail.com` (GitHub `youssefbouzgarrouyb1-droid`, Vercel, Supabase). Règle du 08/08/2026 : cette identité sert **uniquement** à Menu4All.
 

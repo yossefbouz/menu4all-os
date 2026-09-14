@@ -134,6 +134,12 @@
 **Décision :** l'équipe compte quatre personnes. **Bayram** et **Idriss** portent la prospection et la négociation ; Youssef et Haroun le développement. Leur approche : aller voir le gérant, nommer la catégorie et la douleur, puis passer la main pour une démo sur le menu réel. Établissements approchés : Cap Grill, Caprice, Art+, Bistrot+ (+ Fares, Captain). Reste à préciser par eux qui a mené quel rendez-vous.
 **Qui :** Youssef. **Preuve :** `ops/TEAM.md`.
 
+### D-029 — 2026-09-14 — Deux secteurs, six personnes, rémunération par parts — PROPOSÉ, à valider
+**Décision (proposée) :** Menu4All s'organise en deux secteurs vendant à la même clientèle : **Web** (Youssef, Bayram, Haroun — responsable Youssef) et **Marketing** (Haroun, Idriss, Aziz, Drago — responsable Haroun). Tout membre peut apporter et signer un client dans les deux secteurs. Chaque contrat encaissé se découpe en parts fixes : en une fois **Signature 15 % · Apport 5 % · Socle 10 % · Réalisation 50 % · Caisse 20 %** ; récurrent **Signature 10 % (12 mois) · Apport 5 % (12 mois) · Réalisation 60 % · Caisse 25 %**. Payé sur l'encaissé ; rôles et poids écrits ici avant de commencer. Offres marketing proposées : Présence 250 DT/mois, Croissance 450 DT/mois, Shooting 300 DT, Lancement 600 DT.
+**Qui :** Youssef (proposition), à valider par les six en réunion la semaine du 15/09. **Pourquoi :** l'équipe grandit et personne ne savait comment répartir ; un modèle par parts paie le travail réellement fait, quel que soit le secteur.
+**Preuve :** `ops/PLAN-2026-09-DEUX-SECTEURS.md`, `ops/REMUNERATION.md`.
+> ❓ Reste à trancher en réunion : O-9 à O-13 ci-dessous. Tant que cette ligne dit « PROPOSÉ », rien n'est dû à personne sur cette base.
+
 ---
 
 ## Décisions encore ouvertes (à trancher)
@@ -147,3 +153,9 @@
 | O-5 | Remise 2 salles Art+ (Flashback+ / R+) | Youssef | D-006 |
 | O-6 | Nostraliva et MANEKEN : prospects réels ou archives ? | Youssef | — |
 | O-7 | Domaine capgrill.org sur le compte personnel : régulariser ou documenter l'exception ? | Youssef | D-010 |
+| O-8 | Fermer l'inscription publique sur le projet Supabase capgrill (découvert le 13/09 : ouverte) | Youssef | D-027, 13/09 |
+| O-9 | Rétroactivité de la grille de rémunération sur Cap Grill (1 500 DT) et Caprice | Youssef + Haroun + Bayram + Idriss | D-029, 14/09 |
+| O-10 | Parts fondateurs sur le surplus de la caisse commune en fin d'année | Youssef + Haroun | D-029, 14/09 |
+| O-11 | Remise « deux secteurs » (site + marketing) : 10 % sur la ligne la moins chère ? | Youssef + Haroun | D-029, 14/09 |
+| O-12 | Budget publicitaire toujours payé par le client, jamais avancé par la caisse ? | Haroun | D-029, 14/09 |
+| O-13 | Prénoms et rôles exacts des nouveaux (Aziz, Drago, Idriss) ; responsable Marketing confirmé ? | Youssef | D-029, 14/09 |
