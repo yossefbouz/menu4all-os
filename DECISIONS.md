@@ -140,6 +140,11 @@
 **Preuve :** `ops/PLAN-2026-09-DEUX-SECTEURS.md`, `ops/REMUNERATION.md`.
 > ❓ Reste à trancher en réunion : O-9 à O-13 ci-dessous. Tant que cette ligne dit « PROPOSÉ », rien n'est dû à personne sur cette base.
 
+### D-030 — 2026-09-14 — Deux réunions d'équipe par semaine ; les tâches de la semaine ; le site d'équipe en anglais
+**Décision :** l'équipe se réunit **deux fois par semaine**, à **16 h (ou 15 h) et 21 h, heure de Tunisie** — les jours restent à confirmer (O-14). Tâches de la semaine : **Idriss et Bayram** mènent la remise Caprice, le rendez-vous Art+ et livrent les derniers QR (tables 31–60) à Cap Grill ; **Youssef** met à jour la présentation Art+ ; **Aziz, Drago et Idriss** fixent les prix des offres marketing. Le site d'équipe (menu4all-os.vercel.app) passe en anglais, calendrier en premier, avec un fil d'actualités et les tâches filtrables par personne.
+**Qui :** Youssef. **Pourquoi :** l'équipe grandit et travaille dans deux langues ; un rythme fixe et une page unique évitent de reposer les mêmes questions.
+**Preuve :** `ops/menu4all-os.html`, site public.
+
 ---
 
 ## Décisions encore ouvertes (à trancher)
@@ -159,3 +164,4 @@
 | O-11 | Remise « deux secteurs » (site + marketing) : 10 % sur la ligne la moins chère ? | Youssef + Haroun | D-029, 14/09 |
 | O-12 | Budget publicitaire toujours payé par le client, jamais avancé par la caisse ? | Haroun | D-029, 14/09 |
 | O-13 | Prénoms et rôles exacts des nouveaux (Aziz, Drago, Idriss) ; responsable Marketing confirmé ? | Youssef | D-029, 14/09 |
+| O-14 | Jours des deux réunions hebdomadaires (créneaux 16 h / 15 h et 21 h, heure de Tunisie) | Tous | D-030, 14/09 |

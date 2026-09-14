@@ -1,38 +1,36 @@
-# Menu4All OS
+# Menu4All Team
 
-Le site de l'équipe Menu4All : **qui a décidé quoi, quand, où en est chaque client, et comment on se paie.**
+The Menu4All team site: **what's next, what happened, who does what, and how we get paid.**
 
-En ligne : https://menu4all-os.vercel.app
+Live: https://menu4all-os.vercel.app
 
-| Page | Ce qu'on y trouve |
+| Page | What's on it |
 |---|---|
-| [`index.html`](index.html) — **Tableau de bord** | Clients (un état, un responsable), équipe, journal des décisions filtrable, questions à trancher, les 4 règles. |
-| [`deux-secteurs.html`](deux-secteurs.html) — **Plan deux secteurs** | L'organisation Web / Marketing, les parts de chaque contrat, un **simulateur** (qui touche quoi sur un montant donné), les offres marketing, les 7 règles, qui fait quoi cette semaine. |
-| [`presentation-deux-secteurs.html`](presentation-deux-secteurs.html) — **Présentation d'équipe** | 15 slides pour la réunion de validation et l'onboarding des nouveaux (flèches du clavier pour naviguer). |
-| [`presentation-deux-secteurs-en.html`](presentation-deux-secteurs-en.html) — **Team presentation (English)** | The same 15 slides in English ; bouton de langue en haut à droite de chaque déck. |
+| [`index.html`](index.html) — **Team page** | Calendar first (two meetings a week, Tunisia time), news feed, tasks filterable by person with the share each one earns, the pay model, every decision so far, client states, open questions, the team. |
+| [`plan.html`](plan.html) — **Two-sector plan** | The Web / Marketing organisation, the shares of every contract, a **simulator** (who gets what on any amount), the marketing offers, the seven rules, this week's tasks. |
+| [`presentation.html`](presentation.html) — **Team presentation** | 15 slides for the validation meeting and onboarding (arrow keys to navigate). French version: [`presentation-fr.html`](presentation-fr.html). |
 
-Les sources en texte, à côté :
+Text sources, kept in French in the private repo and copied here:
 
-- [`DECISIONS.md`](DECISIONS.md) — une ligne par décision depuis le 14/07/2026, datée, signée, avec la preuve. Dernière : D-029 (deux secteurs, **proposée**).
-- [`CLIENTS.md`](CLIENTS.md) — un état et un responsable par établissement.
-- [`TEAM.md`](TEAM.md) — qui fait quoi (six personnes depuis le 14/09/2026).
-- [`REMUNERATION.md`](REMUNERATION.md) — le modèle de rémunération par parts, les règles, trois exemples chiffrés.
-- [`PLAN-2026-09-DEUX-SECTEURS.md`](PLAN-2026-09-DEUX-SECTEURS.md) — le plan complet.
+- [`DECISIONS.md`](DECISIONS.md) — one line per decision since 14 July 2026, dated, signed, with proof. Latest: D-030.
+- [`CLIENTS.md`](CLIENTS.md) — one state and one owner per venue.
+- [`TEAM.md`](TEAM.md) — who does what (six people since 14 Sept 2026).
+- [`REMUNERATION.md`](REMUNERATION.md) — the pay model by shares, the rules, three worked examples.
+- [`PLAN-2026-09-DEUX-SECTEURS.md`](PLAN-2026-09-DEUX-SECTEURS.md) — the full plan.
 
-Site statique, aucun build : Vercel sert les fichiers tels quels.
+Static site, no build: Vercel serves the files as they are.
 
-## Les 4 règles
+## The four rules
 
-1. **Une décision non écrite n'existe pas.** Une ligne dans `DECISIONS.md` le jour même : date, décision, qui, pourquoi, preuve.
-2. **Un client, un état, un responsable.**
-3. **On signe.** Youssef, Haroun, Bayram, Idriss, Aziz, Drago, le client par son nom.
-4. **La preuve vit dans le dépôt** (commit, doc, ou une phrase qui dit « WhatsApp du 12/09 »).
+1. **A decision that isn't written down doesn't exist.** One line in `DECISIONS.md` the same day: date, decision, who, why, proof.
+2. **One client, one state, one owner.**
+3. **We sign.** Youssef, Haroun, Bayram, Idriss, Aziz, Drago, the client by name.
+4. **Proof lives in the repo** (a commit, a doc, or one sentence saying "WhatsApp of 12 Sept").
 
-## Mettre à jour
+## Updating
 
-1. Modifier le `.md` concerné dans le dépôt privé (`menu4all-deck/ops/`).
-2. Reporter le changement dans les tableaux `CLIENTS` / `D` en bas de `index.html`, ou dans `deux-secteurs.html` si c'est le modèle de rémunération qui change.
-3. Recopier ici (les numéros de téléphone des clients sont retirés au passage), `git commit` + `git push`.
-4. `vercel --prod --yes` depuis ce dossier : le projet Vercel est lié par la CLI, **un push seul ne redéploie pas**.
+1. Edit the source in the private repo (`menu4all-deck/ops/`): the `.md` files, and `menu4all-os.html` (this site's index), `deux-secteurs.html` (plan), the two decks.
+2. Run the build script: it renames to the public file names, rewrites links, and removes client phone numbers.
+3. `git commit` + `git push`, then `vercel --prod --yes` from this folder: the Vercel project is linked through the CLI, **a push alone does not redeploy**.
 
-> Version publique : les numéros de téléphone des clients ont été retirés ; ils restent dans le dépôt privé.
+> Public version: client phone numbers are removed; they stay in the private repo.

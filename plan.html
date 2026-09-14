@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex">
+<title>Menu4All — Two sectors</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+  :root {
+    --bg: #f5efe6; --bg-soft: #ece5da; --card: #fffdf9; --line: #d9d0c3;
+    --ink: #141416; --ink-2: #4d4a45; --ink-3: #7d786f;
+    --accent: #d84a12; --accent-ink: #ffffff;
+    --web: #2a6fb0; --web-bg: #dfeaf7; --mkt: #a8760c; --mkt-bg: #f7ecd0;
+    --p-sig: #d84a12; --p-app: #e9895a; --p-socle: #6f5b8f; --p-real: #2f8f5b; --p-caisse: #7d786f;
+    --warn-bg: #f7ecd0; --warn: #7a5405;
+    --shadow: 0 1px 0 rgba(20,20,22,.06), 0 8px 24px -16px rgba(20,20,22,.25);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #141416; --bg-soft: #1c1c20; --card: #202024; --line: #2e2e34;
+      --ink: #f5efe6; --ink-2: #c9c2b6; --ink-3: #8f8a81;
+      --accent: #ff5a1f; --accent-ink: #141416;
+      --web: #7dbdf3; --web-bg: #142a3e; --mkt: #f0c45a; --mkt-bg: #3a2e0f;
+      --p-sig: #ff5a1f; --p-app: #f0a077; --p-socle: #a48fc9; --p-real: #6fd39a; --p-caisse: #8f8a81;
+      --warn-bg: #3a2e0f; --warn: #f0c45a;
+      --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #141416; --bg-soft: #1c1c20; --card: #202024; --line: #2e2e34;
+    --ink: #f5efe6; --ink-2: #c9c2b6; --ink-3: #8f8a81;
+    --accent: #ff5a1f; --accent-ink: #141416;
+    --web: #7dbdf3; --web-bg: #142a3e; --mkt: #f0c45a; --mkt-bg: #3a2e0f;
+    --p-sig: #ff5a1f; --p-app: #f0a077; --p-socle: #a48fc9; --p-real: #6fd39a; --p-caisse: #8f8a81;
+    --warn-bg: #3a2e0f; --warn: #f0c45a;
+    --shadow: 0 1px 0 rgba(0,0,0,.4), 0 10px 30px -18px rgba(0,0,0,.8);
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--bg); color: var(--ink); font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; font-size: 16px; line-height: 1.5; padding-inline: 16px; padding-block: 0 80px; }
+  a { color: inherit; }
+  code, .mono { font-family: "JetBrains Mono", "Cascadia Mono", Consolas, monospace; font-size: .86em; }
+  h1, h2, h3 { text-wrap: balance; margin: 0; }
+  h1 { font-family: "Archivo Black", "Arial Black", sans-serif; font-size: clamp(1.8rem, 4vw, 2.6rem); letter-spacing: -.01em; line-height: 1.05; }
+  h2 { font-family: "Archivo Black", "Arial Black", sans-serif; font-size: 1.4rem; }
+  h3 { font-size: 1rem; font-weight: 700; }
+  p { margin: 0; }
+  .eyebrow { font-size: .72rem; text-transform: uppercase; letter-spacing: .12em; color: var(--ink-3); font-weight: 600; }
+  .wrap { max-width: 920px; margin: 0 auto; }
+
+  nav.top { position: sticky; top: 0; z-index: 5; background: var(--bg); border-bottom: 1px solid var(--line); margin-inline: -16px; padding: 10px 16px; }
+  nav.top .wrap { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+  nav.top .wordmark { font-family: "Archivo Black", sans-serif; font-size: 1rem; }
+  nav.top .wordmark span { color: var(--accent); }
+  nav.top .links { display: flex; gap: 2px; flex-wrap: wrap; }
+  nav.top .links a { text-decoration: none; padding: 5px 9px; border-radius: 6px; color: var(--ink-2); font-size: .86rem; font-weight: 500; }
+  nav.top .links a:hover, nav.top .links a:focus-visible { background: var(--bg-soft); color: var(--ink); outline: none; }
+  nav.top .links a.ext { color: var(--accent); font-weight: 600; }
+
+  header.top { display: flex; flex-direction: column; gap: 14px; padding-block: 44px 30px; border-bottom: 1px solid var(--line); margin-bottom: 40px; }
+  header.top p { max-width: 64ch; color: var(--ink-2); font-size: 1.05rem; }
+  .status { display: inline-flex; align-items: center; gap: 8px; align-self: flex-start; padding: 5px 12px; border-radius: 999px; background: var(--warn-bg); color: var(--warn); font-size: .78rem; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; }
+  .status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: currentColor; }
+
+  section { margin-bottom: 56px; scroll-margin-top: 64px; display: flex; flex-direction: column; gap: 18px; }
+  .sec-head { display: flex; flex-direction: column; gap: 6px; }
+  .sec-head p { color: var(--ink-2); max-width: 66ch; }
+
+  .sectors { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .sector { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 12px; box-shadow: var(--shadow); border-top: 4px solid var(--c); }
+  .sector.web { --c: var(--web); --cb: var(--web-bg); } .sector.mkt { --c: var(--mkt); --cb: var(--mkt-bg); }
+  .sector h3 { font-family: "Archivo Black", sans-serif; font-size: 1.15rem; color: var(--c); }
+  .sector .sells { color: var(--ink-2); font-size: .92rem; }
+  .people { display: flex; flex-wrap: wrap; gap: 6px; }
+  .person { display: inline-flex; align-items: center; gap: 6px; padding: 5px 11px; border-radius: 999px; background: var(--cb); color: var(--ink); font-weight: 600; font-size: .88rem; }
+  .person.lead::after { content: "lead"; font-size: .68rem; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
+  .person.both { outline: 2px dashed var(--c); outline-offset: -2px; background: transparent; }
+  .bridge { padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); border-radius: 0 8px 8px 0; color: var(--ink-2); font-size: .92rem; }
+  .bridge b { color: var(--ink); }
+
+  .bars { display: flex; flex-direction: column; gap: 22px; }
+  .bar-block { display: flex; flex-direction: column; gap: 8px; }
+  .bar-block .t { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+  .bar-block .t small { color: var(--ink-3); font-size: .84rem; }
+  .bar { display: flex; height: 44px; border-radius: 6px; overflow: hidden; }
+  .bar span { display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: .84rem; font-variant-numeric: tabular-nums; white-space: nowrap; overflow: hidden; }
+  .seg-sig { background: var(--p-sig); } .seg-app { background: var(--p-app); } .seg-socle { background: var(--p-socle); } .seg-real { background: var(--p-real); } .seg-caisse { background: var(--p-caisse); }
+  .parts { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 10px; }
+  .part { display: flex; flex-direction: column; gap: 4px; padding: 12px 14px; border-radius: 6px; background: var(--card); border: 1px solid var(--line); border-left: 4px solid var(--c); }
+  .part .n { font-weight: 700; }
+  .part .d { color: var(--ink-2); font-size: .86rem; }
+  .part.sig { --c: var(--p-sig); } .part.app { --c: var(--p-app); } .part.socle { --c: var(--p-socle); } .part.real { --c: var(--p-real); } .part.caisse { --c: var(--p-caisse); }
+
+  .sim { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; }
+  .panel { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 20px; display: flex; flex-direction: column; gap: 14px; }
+  .field { display: flex; flex-direction: column; gap: 5px; }
+  .field label, .field .lab { font-size: .8rem; font-weight: 600; color: var(--ink-2); }
+  .field input, .field select { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 8px 10px; width: 100%; }
+  .field input:focus-visible, .field select:focus-visible, .seg button:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+  .row2 { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .seg { display: flex; border: 1px solid var(--line); border-radius: 6px; overflow: hidden; }
+  .seg button { flex: 1; font: inherit; font-size: .88rem; font-weight: 600; padding: 8px; border: 0; background: var(--bg); color: var(--ink-2); cursor: pointer; }
+  .seg button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+  .weights { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+  .weights .w { display: flex; flex-direction: column; gap: 3px; }
+  .weights .w label { font-size: .78rem; font-weight: 600; color: var(--ink-2); }
+  .weights .w input { font: inherit; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 6px; padding: 6px 8px; width: 100%; font-variant-numeric: tabular-nums; }
+  .hint { font-size: .8rem; color: var(--ink-3); }
+  .result table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+  .result th, .result td { text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--line); font-size: .9rem; }
+  .result th { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); font-weight: 600; }
+  .result td.num, .result th.num { text-align: right; }
+  .result td.parts-cell { color: var(--ink-2); font-size: .82rem; }
+  .result tr.total td { font-weight: 700; border-bottom: 0; border-top: 2px solid var(--ink); }
+  .big { font-family: "Archivo Black", sans-serif; font-size: 1.5rem; line-height: 1.1; }
+  .tranches { display: flex; flex-direction: column; gap: 6px; font-size: .86rem; color: var(--ink-2); }
+  .tranches b { color: var(--ink); }
+  .note { padding: 10px 12px; border-radius: 6px; background: var(--warn-bg); color: var(--warn); font-size: .84rem; }
+
+  .offers { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+  .offer { display: grid; grid-template-columns: 150px minmax(0, 1fr) 120px; gap: 16px; padding: 14px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .offer .n { font-weight: 700; } .offer .n small { display: block; font-weight: 400; color: var(--ink-3); font-size: .8rem; }
+  .offer .c { color: var(--ink-2); font-size: .92rem; }
+  .offer .p { font-family: "Archivo Black", sans-serif; text-align: right; font-variant-numeric: tabular-nums; } .offer .p small { display: block; font-family: "Space Grotesk", sans-serif; font-weight: 500; color: var(--ink-3); font-size: .78rem; }
+
+  ol.rules { margin: 0; padding-left: 0; list-style: none; counter-reset: r; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  ol.rules li { counter-increment: r; display: grid; grid-template-columns: 34px 1fr; gap: 10px; padding: 14px; background: var(--card); border: 1px solid var(--line); border-radius: 8px; font-size: .92rem; color: var(--ink-2); }
+  ol.rules li::before { content: counter(r); font-family: "Archivo Black", sans-serif; font-size: 1.3rem; color: var(--accent); line-height: 1; }
+  ol.rules li b { color: var(--ink); display: block; margin-bottom: 2px; }
+
+  .tbl { overflow-x: auto; }
+  .tbl table { width: 100%; min-width: 560px; border-collapse: collapse; }
+  .tbl th, .tbl td { text-align: left; padding: 10px 8px; border-bottom: 1px solid var(--line); vertical-align: top; font-size: .9rem; }
+  .tbl th { font-size: .72rem; text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); font-weight: 600; }
+  .tbl td.who { color: var(--accent); font-weight: 600; white-space: nowrap; }
+  .tbl td.id { font-family: "JetBrains Mono", monospace; font-size: .8rem; color: var(--accent); white-space: nowrap; }
+  footer { color: var(--ink-3); font-size: .82rem; border-top: 1px solid var(--line); padding-top: 18px; }
+
+  @media (max-width: 720px) {
+    .sectors, .sim, .row2, ol.rules { grid-template-columns: 1fr; }
+    .offer { grid-template-columns: 1fr; gap: 6px; } .offer .p { text-align: left; }
+    .weights { grid-template-columns: repeat(2, 1fr); }
+    .bar span { font-size: .72rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top"><div class="wrap">
+  <div class="wordmark">Menu<span>4</span>All · Two sectors</div>
+  <div class="links">
+    <a class="ext" href="index.html">← Team page</a><a href="#team">Team</a><a href="#shares">Shares</a><a href="#simulateur">Simulator</a><a href="#offers">Marketing offers</a><a href="#rules">Rules</a><a href="#week">This week</a><a href="#open">To decide</a><a class="ext" href="presentation.html">Presentation →</a>
+  </div>
+</div></nav>
+
+<div class="wrap">
+<header class="top">
+  <span class="eyebrow">Organisation plan · 14 September 2026</span>
+  <h1>Two sectors, six people, one way to get paid.</h1>
+  <p>Menu4All now sells two things to the same cafés and restaurants: their web presence and their marketing presence. Every contract we collect is cut into fixed shares, and each share goes to the person who did the matching work. This page is the proposal to validate together.</p>
+  <span class="status">Proposal · to validate at the next meeting</span>
+</header>
+
+<section id="team">
+  <div class="sec-head"><h2>The team in two sectors</h2><p>Same clients, two offers. Anyone can bring in and close a client in either sector.</p></div>
+  <div class="sectors">
+    <div class="sector web">
+      <h3>Web</h3>
+      <p class="sells">Websites, digital menus, table QR codes, manager dashboard, modules (stock, table board), maintenance, hosting.</p>
+      <div class="people"><span class="person lead">Youssef</span><span class="person">Bayram</span><span class="person both">Haroun</span></div>
+    </div>
+    <div class="sector mkt">
+      <h3>Marketing</h3>
+      <p class="sells">Social media, content, photo and video shoots, sponsored campaigns, Google Business profile.</p>
+      <div class="people"><span class="person lead">Haroun</span><span class="person">Idriss</span><span class="person">Aziz</span><span class="person">Drago</span></div>
+    </div>
+  </div>
+  <div class="bridge"><b>Haroun is the bridge.</b> He is in both sectors: every web client gets offered a marketing pack, and every marketing client gets offered a web pack. The first names Aziz and Drago, and the Marketing lead, are still to confirm (O-13).</div>
+</section>
+
+<section id="shares">
+  <div class="sec-head"><h2>How a contract is cut</h2><p>On every dinar <b>collected</b>, never on signature. A 1,500 DT contract paid 40 / 30 / 30 pays the shares in three instalments.</p></div>
+  <div class="bars">
+    <div class="bar-block">
+      <div class="t"><h3>One-off contract</h3><small>Bronze, Silver, Gold, Diamond, Design only, Shoot, Launch</small></div>
+      <div class="bar" role="img" aria-label="Closing 15%, Lead 5%, Base 10%, Delivery 50%, Fund 20%">
+        <span class="seg-sig" style="flex:15">15%</span><span class="seg-app" style="flex:5">5</span><span class="seg-socle" style="flex:10">10%</span><span class="seg-real" style="flex:50">50%</span><span class="seg-caisse" style="flex:20">20%</span>
+      </div>
+    </div>
+    <div class="bar-block">
+      <div class="t"><h3>Recurring contract</h3><small>Monthly 79 / 99 / 139 / 549 DT, maintenance, hosting, monthly marketing packs</small></div>
+      <div class="bar" role="img" aria-label="Closing 10%, Lead 5%, Delivery 60%, Fund 25%">
+        <span class="seg-sig" style="flex:10">10%</span><span class="seg-app" style="flex:5">5</span><span class="seg-real" style="flex:60">60%</span><span class="seg-caisse" style="flex:25">25%</span>
+      </div>
+    </div>
+  </div>
+  <div class="parts">
+    <div class="part sig"><span class="n">Closing</span><span class="d">To whoever ran the negotiation and got the signature. Two people: half each. Recurring: for 12 months only.</span></div>
+    <div class="part app"><span class="n">Lead</span><span class="d">To whoever found the client: the name, the contact, the open door. Stacks with closing.</span></div>
+    <div class="part socle"><span class="n">Base</span><span class="d">To Youssef and Haroun for the reused core code. Marketing: to the fund until the marketing kit exists.</span></div>
+    <div class="part real"><span class="n">Delivery</span><span class="d">To those who delivered, by weights written in the log <b>before</b> starting.</span></div>
+    <div class="part caisse"><span class="n">Shared fund</span><span class="d">Domains, hosting, tools, printing, travel, reserve. Year-end surplus: founder shares (O-10).</span></div>
+  </div>
+</section>
+
+<section id="simulateur">
+  <div class="sec-head"><h2>Share simulator</h2><p>Preloaded with example A: a Gold website at 1,500 DT found and closed by Bayram, built by Youssef and Haroun at 70 / 30. Change anything.</p></div>
+  <div class="sim">
+    <div class="panel">
+      <div class="field"><span class="lab">Contract type</span>
+        <div class="seg" role="group" aria-label="Contract type">
+          <button type="button" id="type-once" aria-pressed="true">One-off</button>
+          <button type="button" id="type-rec" aria-pressed="false">Recurring (per month)</button>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="amount">Amount collected (DT)</label><input id="amount" type="number" min="0" step="10" value="1500"></div>
+        <div class="field"><span class="lab">Sector delivering</span>
+          <div class="seg" role="group" aria-label="Sector">
+            <button type="button" id="sec-web" aria-pressed="true">Web</button>
+            <button type="button" id="sec-mkt" aria-pressed="false">Marketing</button>
+          </div>
+        </div>
+      </div>
+      <div class="row2">
+        <div class="field"><label for="apport">Lead (who found the client)</label><select id="apport"></select></div>
+        <div class="field"><label for="sig1">Closing (who got the signature)</label><select id="sig1"></select></div>
+      </div>
+      <div class="field"><label for="sig2">Co-closer (optional, half each)</label><select id="sig2"></select></div>
+      <div class="field"><span class="lab">Delivery: weight per person (any scale, we normalise)</span>
+        <div class="weights" id="weights"></div>
+        <span class="hint" id="wsum"></span>
+      </div>
+    </div>
+    <div class="panel result">
+      <div><span class="eyebrow">Split</span><div class="big" id="headline"></div></div>
+      <table>
+        <thead><tr><th>Person</th><th>Shares</th><th class="num">DT</th></tr></thead>
+        <tbody id="rows"></tbody>
+      </table>
+      <div class="tranches" id="tranches"></div>
+      <div class="note" id="socle-note" hidden>Marketing sector: the Base share (10%) goes to the fund until the marketing kit exists.</div>
+    </div>
+  </div>
+</section>
+
+<section id="offers">
+  <div class="sec-head"><h2>What the Marketing sector sells</h2><p>Proposed prices, aligned with the "Gold = 139 DT per month" logic to stay consistent with the Web grid. To validate with the official grid (O-1). Aziz, Drago and Idriss are settling them this week.</p></div>
+  <div class="offers">
+    <div class="offer"><div class="n">Presence<small>monthly</small></div><div class="c">8 posts and 4 stories per week, replies to Google and Instagram reviews, one-page monthly report.</div><div class="p">250 DT<small>per month</small></div></div>
+    <div class="offer"><div class="n">Growth<small>monthly</small></div><div class="c">12 posts and 4 reels, one shoot per month, one managed sponsored campaign (ad budget paid by the client), monthly report.</div><div class="p">450 DT<small>per month</small></div></div>
+    <div class="offer"><div class="n">Shoot<small>one-off</small></div><div class="c">Half-day photo and video on site, 30 edited photos and 5 raw reels, delivered in 5 days.</div><div class="p">300 DT<small>one-off</small></div></div>
+    <div class="offer"><div class="n">Launch<small>one-off</small></div><div class="c">Instagram, Facebook and Google Business pages created or brought up to standard, post identity, one month of content, one shoot.</div><div class="p">600 DT<small>one-off</small></div></div>
+  </div>
+  <div class="bridge"><b>First marketing clients are already there:</b> Cap Grill (delivered, photos already online) and Caprice (ready to hand over). Proposed "two sectors" discount: 10% on the cheaper line (O-11).</div>
+</section>
+
+<section id="rules">
+  <div class="sec-head"><h2>The seven rules</h2></div>
+  <ol class="rules">
+    <li><span><b>Paid on cash collected, never on signature.</b> If the client doesn't pay the last instalment, nobody gets it.</span></li>
+    <li><span><b>Everything is written before we start.</b> A line in the log says who brought the lead, who closed, who delivers and with which weights. No line, no payment.</span></li>
+    <li><span><b>One contract, one owner.</b> They answer the client and trigger the payments. By default, the sector lead.</span></li>
+    <li><span><b>Hats stack.</b> Bring, close and deliver the same contract, and you get all three shares.</span></li>
+    <li><span><b>You can sell the other sector.</b> A marketing member who closes a Gold website gets the Closing share; Delivery goes to the Web sector.</span></li>
+    <li><span><b>A mixed contract is split line by line.</b> The website follows the one-off grid, the monthly pack the recurring grid.</span></li>
+    <li><span><b>A dispute is settled by two.</b> Youssef and Haroun decide together, and the decision is written down.</span></li>
+  </ol>
+  <p class="hint">Every client payment and every payout is logged in the payments ledger. Payout within 7 days of the client paying.</p>
+</section>
+
+<section id="week">
+  <div class="sec-head"><h2>Who does what, now</h2></div>
+  <div class="tbl"><table>
+    <thead><tr><th>What</th><th>Who</th><th>When</th></tr></thead>
+    <tbody>
+      <tr><td>Caprice: handover meeting with the manager (menu + stock module, training, pack and price)</td><td class="who">Idriss, Bayram</td><td>This week</td></tr>
+      <tr><td>Art+: meeting with Amine Dababi, present the proposal for the two venues</td><td class="who">Idriss, Bayram</td><td>This week</td></tr>
+      <tr><td>Cap Grill: hand over the last QR codes (tables 31–60)</td><td class="who">Idriss, Bayram</td><td>This week</td></tr>
+      <tr><td>Art+: update the presentation (two venues, table board, price grid per O-1)</td><td class="who">Youssef</td><td>Before the Art+ meeting</td></tr>
+      <tr><td>Settle the four marketing offers and their prices, write them in the log</td><td class="who">Aziz, Drago, Idriss</td><td>By Thursday's meeting</td></tr>
+      <tr><td>Caprice: check the admin login in production (five Vercel variables)</td><td class="who">Haroun</td><td>Before the handover</td></tr>
+      <tr><td>Validate this plan: the six people, the sectors, the percentages, the offers, the meeting days</td><td class="who">Everyone</td><td>Next meeting</td></tr>
+      <tr><td>Marketing kit v1: 6 post templates, a one-month calendar, shoot checklist, report template</td><td class="who">Haroun, Aziz, Drago</td><td>Week of 22 Sep</td></tr>
+      <tr><td>First marketing client: pitch Presence to Cap Grill and Caprice</td><td class="who">Idriss, Aziz</td><td>Week of 22 Sep</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section id="open">
+  <div class="sec-head"><h2>To decide at the meeting</h2><p>While these points are open, decision D-029 stays "proposed" and nothing is owed to anyone on this basis.</p></div>
+  <div class="tbl"><table>
+    <thead><tr><th>#</th><th>Question</th><th>Who decides</th></tr></thead>
+    <tbody>
+      <tr><td class="id">O-9</td><td>Apply the grid retroactively to Cap Grill (1,500 DT) and Caprice? Proposal: yes for Closing and Lead (the field work was done), the rest as already agreed between Youssef and Haroun.</td><td class="who">Youssef, Haroun, Bayram, Idriss</td></tr>
+      <tr><td class="id">O-10</td><td>Founder shares of the fund's year-end surplus.</td><td class="who">Youssef, Haroun</td></tr>
+      <tr><td class="id">O-11</td><td>"Two sectors" discount: 10% on the cheaper line?</td><td class="who">Youssef, Haroun</td></tr>
+      <tr><td class="id">O-12</td><td>Ad budget always paid by the client, never advanced by the fund?</td><td class="who">Haroun</td></tr>
+      <tr><td class="id">O-13</td><td>Exact first names and roles of Aziz, Drago and Idriss; Marketing lead confirmed?</td><td class="who">Youssef</td></tr>
+      <tr><td class="id">O-14</td><td>Meeting days: which two days for the 16:00 and 21:00 Tunisia-time slots?</td><td class="who">Everyone</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<footer>Source: <code>ops/PLAN-2026-09-DEUX-SECTEURS.md</code> and <code>ops/REMUNERATION.md</code> in the Menu4All repository. The simulator follows the model proposed on 14 Sept 2026; if the meeting changes a percentage, the file changes and the page is republished.</footer>
+</div>
+
+<script>
+(function () {
+  const PEOPLE = ["Youssef", "Haroun", "Bayram", "Idriss", "Aziz", "Drago"];
+  const FOUNDERS = ["Youssef", "Haroun"];
+  const GRID = {
+    once: { sig: .15, app: .05, socle: .10, real: .50, caisse: .20 },
+    rec:  { sig: .10, app: .05, socle: 0,   real: .60, caisse: .25 }
+  };
+  const state = { type: "once", sector: "web" };
+  const $ = (id) => document.getElementById(id);
+
+  function fillSelect(sel, withNone, defaultValue) {
+    const opts = (withNone ? ["— nobody —"] : []).concat(PEOPLE);
+    sel.innerHTML = opts.map((p, i) => `<option value="${withNone && i === 0 ? "" : p}">${p}</option>`).join("");
+    sel.value = defaultValue;
+  }
+  fillSelect($("apport"), true, "Bayram");
+  fillSelect($("sig1"), false, "Bayram");
+  fillSelect($("sig2"), true, "");
+
+  const defaults = { Youssef: 70, Haroun: 30 };
+  $("weights").innerHTML = PEOPLE.map((p) =>
+    `<div class="w"><label for="w-${p}">${p}</label><input id="w-${p}" type="number" min="0" step="5" value="${defaults[p] || 0}"></div>`
+  ).join("");
+
+  function setSeg(pressedId, otherId) { $(pressedId).setAttribute("aria-pressed", "true"); $(otherId).setAttribute("aria-pressed", "false"); }
+  $("type-once").addEventListener("click", () => { state.type = "once"; setSeg("type-once", "type-rec"); render(); });
+  $("type-rec").addEventListener("click", () => { state.type = "rec"; setSeg("type-rec", "type-once"); render(); });
+  $("sec-web").addEventListener("click", () => { state.sector = "web"; setSeg("sec-web", "sec-mkt"); render(); });
+  $("sec-mkt").addEventListener("click", () => { state.sector = "mkt"; setSeg("sec-mkt", "sec-web"); render(); });
+  document.querySelectorAll("#simulateur input, #simulateur select").forEach((el) => el.addEventListener("input", render));
+
+  const fmt = (n) => n.toLocaleString("en-US", { minimumFractionDigits: 0, maximumFractionDigits: 2 }) + " DT";
+
+  function compute() {
+    const g = GRID[state.type];
+    const amount = Math.max(0, Number($("amount").value) || 0);
+    const payouts = {}; const labels = {};
+    const add = (who, part, dt) => {
+      if (!who || dt <= 0) return;
+      payouts[who] = (payouts[who] || 0) + dt;
+      labels[who] = (labels[who] || []).concat(part);
+    };
+    const sig1 = $("sig1").value, sig2 = $("sig2").value && $("sig2").value !== sig1 ? $("sig2").value : "";
+    const sigAmt = amount * g.sig;
+    if (sig2) { add(sig1, "Closing ½", sigAmt / 2); add(sig2, "Closing ½", sigAmt / 2); } else add(sig1, "Closing", sigAmt);
+    add($("apport").value, "Lead", amount * g.app);
+
+    let caisse = amount * g.caisse;
+    const socleAmt = amount * g.socle;
+    let socleToCaisse = false;
+    if (socleAmt > 0) {
+      if (state.sector === "web") FOUNDERS.forEach((f) => add(f, "Base", socleAmt / FOUNDERS.length));
+      else { caisse += socleAmt; socleToCaisse = true; }
+    }
+    const weights = PEOPLE.map((p) => [p, Math.max(0, Number($("w-" + p).value) || 0)]);
+    const wsum = weights.reduce((s, [, w]) => s + w, 0);
+    const realAmt = amount * g.real;
+    if (wsum > 0) weights.forEach(([p, w]) => { if (w > 0) add(p, `Delivery ${Math.round((w / wsum) * 100)}%`, realAmt * (w / wsum)); });
+    else caisse += realAmt;
+    return { amount, payouts, labels, caisse, wsum, socleToCaisse, realUnassigned: wsum === 0 && realAmt > 0 };
+  }
+
+  function render() {
+    const r = compute();
+    $("wsum").textContent = r.wsum > 0 ? `Total weight: ${r.wsum} — each weight is divided by this total.` : "No weight entered: the Delivery share stays in the fund.";
+    $("socle-note").hidden = !r.socleToCaisse;
+    $("headline").textContent = state.type === "rec" ? `${fmt(r.amount)} per month` : `${fmt(r.amount)} collected`;
+    const rows = Object.keys(r.payouts).sort((a, b) => r.payouts[b] - r.payouts[a]).map((p) =>
+      `<tr><td><b>${p}</b></td><td class="parts-cell">${r.labels[p].join(" · ")}</td><td class="num">${fmt(r.payouts[p])}</td></tr>`
+    );
+    rows.push(`<tr><td><b>Shared fund</b></td><td class="parts-cell">${r.socleToCaisse ? "Fund · Base" : "Fund"}${r.realUnassigned ? " · unassigned Delivery" : ""}</td><td class="num">${fmt(r.caisse)}</td></tr>`);
+    const total = Object.values(r.payouts).reduce((s, v) => s + v, 0) + r.caisse;
+    rows.push(`<tr class="total"><td>Total</td><td></td><td class="num">${fmt(total)}</td></tr>`);
+    $("rows").innerHTML = rows.join("");
+    if (state.type === "once") {
+      const t = [.4, .3, .3];
+      $("tranches").innerHTML = `<span><b>Paid in three instalments</b> if the client pays 40 / 30 / 30:</span>` +
+        t.map((f, i) => `<span>Instalment ${i + 1} (${Math.round(f * 100)}%, ${fmt(r.amount * f)} received) → each share × ${f}</span>`).join("");
+    } else {
+      $("tranches").innerHTML = `<span><b>Every month</b>, as long as the client pays. Closing and Lead stop after 12 months and go to the fund.</span>`;
+    }
+  }
+  render();
+})();
+</script>
+
+</body>
+</html>

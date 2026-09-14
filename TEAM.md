@@ -78,7 +78,7 @@ Prospection et négociation sur le terrain, sans trace git ; à consigner par eu
 | Caprice | *(à compléter)* | Accord — menu + stock construits, prêt à livrer |
 | Art+ (Flashback+ et R+) | Amine Dababi | Contact pris, proposition préparée, **négociation pas encore menée** |
 | Bistrot+ | *(à compléter)* | Identifié, **négociation pas encore menée** |
-| Fares | (tél. dans le dépôt privé) | Identifié (design seul, 300 DT) |
+| Fares | (phone in the private repo) | Identifié (design seul, 300 DT) |
 | Captain | Fraj Chrif | Identifié (QR hors-ligne), RDV prévu début août |
 | Kavos Café | *(à compléter)* | Nom seulement |
 
