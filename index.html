@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Menu4All Team</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif&display=swap">
 <style>
   :root {
     --bg: #f5efe6; --bg-soft: #ece5da; --card: #fffdf9; --line: #d9d0c3;
@@ -82,6 +82,37 @@
   .slot.hi .t { color: var(--accent); }
   .rule { padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); border-radius: 0 8px 8px 0; color: var(--ink-2); font-size: .95rem; }
   .rule b { color: var(--ink); }
+
+  /* Month calendar: printed-sheet look, kept light in both themes on purpose */
+  .month { border-radius: 10px; padding: 22px; background-color: #f1cfe3;
+    background-image: linear-gradient(90deg, rgba(255,255,255,.55) 50%, transparent 50%), linear-gradient(rgba(255,255,255,.55) 50%, transparent 50%);
+    background-size: 64px 64px; }
+  .paper { background: #ffffff; color: #141416; border-radius: 4px; padding: 22px 24px; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: stretch; }
+  .mside { display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-end; gap: 14px; }
+  .mname { writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Instrument Serif", "Times New Roman", serif; font-size: clamp(3rem, 7vw, 5.4rem); line-height: .9; text-transform: uppercase; letter-spacing: -.02em; color: #141416; }
+  .ystamp { font-family: "JetBrains Mono", monospace; font-size: 1.05rem; border: 2px solid #141416; border-radius: 50%; padding: 12px 8px; transform: rotate(-78deg); line-height: 1; }
+  .mnav { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .mnav .lbl { font-family: "Archivo Black", sans-serif; font-size: 1rem; }
+  .mnav button { font: inherit; font-size: .84rem; font-weight: 700; padding: 5px 11px; border: 1.5px solid #141416; background: #fff; color: #141416; border-radius: 999px; cursor: pointer; }
+  .mnav button:hover, .mnav button:focus-visible { background: #d7f7a5; outline: none; }
+  .mgrid-wrap { overflow-x: auto; }
+  table.mgrid { width: 100%; min-width: 640px; border-collapse: collapse; table-layout: fixed; }
+  table.mgrid th { background: #d7f7a5; border: 1.5px solid #141416; padding: 12px 6px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 1rem; color: #141416; }
+  table.mgrid td { border: 1.5px solid #141416; vertical-align: top; height: 92px; padding: 6px 7px; font-family: "JetBrains Mono", monospace; font-size: .82rem; color: #141416; background: #fff; }
+  table.mgrid td.out { background: #f7f5f1; }
+  table.mgrid td .n { display: block; margin-bottom: 4px; }
+  table.mgrid td.today .n { display: inline-block; background: #141416; color: #fff; border-radius: 999px; padding: 0 7px; }
+  table.mgrid .ev { display: block; font-family: "Space Grotesk", sans-serif; font-size: .78rem; line-height: 1.25; padding: 3px 6px; border-radius: 4px; margin-top: 3px; background: #ffe3d6; color: #a8380c; font-weight: 600; white-space: normal; }
+  table.mgrid .ev.wk { background: #e6f9c8; color: #2f5b10; }
+  table.mgrid .ev.ground { background: #e9e4ff; color: #3d2f8f; }
+  .mkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: .84rem; color: #4d4a45; margin-top: 10px; }
+  .mkey span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--k); }
+  @media (max-width: 720px) {
+    .paper { grid-template-columns: 1fr; }
+    .mside { flex-direction: row; justify-content: flex-start; }
+    .mname { writing-mode: horizontal-tb; transform: none; font-size: 2.6rem; }
+    .ystamp { transform: rotate(-12deg); }
+  }
 
   /* News */
   .feed { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
@@ -185,22 +216,17 @@
 <section id="calendar">
   <div class="sec-head"><span class="eyebrow">Calendar</span><h2>Next meetings</h2></div>
   <div class="next" id="next-meeting"><div><div class="lbl">Next team meeting</div><div class="when" id="next-when">—</div></div><div class="in" id="next-in"></div></div>
-  <div class="cal">
-    <div class="box">
-      <h3>Meetings every week, weekdays and weekends <small>Tunisia time</small></h3>
-      <div class="slots">
-        <div class="slot hi"><span class="d">Monday</span><span class="t">16:00 <small>afternoon meeting · alternative slot 15:00</small></span></div>
-        <div class="slot hi"><span class="d">Thursday</span><span class="t">21:00 <small>evening meeting</small></span></div>
-        <div class="slot hi"><span class="d">Saturday</span><span class="t">16:00 <small>weekend afternoon</small></span></div>
-        <div class="slot hi"><span class="d">Sunday</span><span class="t">21:00 <small>weekend evening</small></span></div>
+  <div class="month" id="month">
+    <div class="paper">
+      <div class="mside"><div class="mname" id="mname">September</div><div class="ystamp" id="ystamp">2026</div></div>
+      <div>
+        <div class="mnav"><button type="button" id="m-prev" aria-label="Previous month">&larr; Prev</button><span class="lbl" id="mlabel"></span><button type="button" id="m-next" aria-label="Next month">Next &rarr;</button></div>
+        <div class="mgrid-wrap"><table class="mgrid" aria-label="Month calendar with team meetings"><thead><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead><tbody id="mbody"></tbody></table></div>
+        <div class="mkey"><span style="--k:#ffe3d6">Weekday meeting: 16:00 Mon (or 15:00), 21:00 Thu</span><span style="--k:#e6f9c8">Weekend meeting: 16:00 Sat, 21:00 Sun</span><span style="--k:#e9e4ff">On the ground (date to set)</span></div>
       </div>
-      <p class="rule"><b>To confirm at the first meeting:</b> the days. Two on weekdays, two at the weekend; the agreed times are 16:00 (or 15:00) and 21:00 Tunisia time. Missing without a message counts as a "no".</p>
-    </div>
-    <div class="box">
-      <h3>Coming up <small>next 2 weeks</small></h3>
-      <div class="slots" id="upcoming"></div>
     </div>
   </div>
+  <p class="rule"><b>All times are Tunisia time.</b> The days are placeholders until the first meeting confirms them (O-14). Missing without a message counts as a "no".</p>
   <div class="box">
     <h3>This week, on the ground <small>dates to set with the clients</small></h3>
     <div class="slots">
@@ -315,10 +341,43 @@
     var diffH = Math.round((n - now) / 36e5);
     document.getElementById("next-in").innerHTML = "<b>" + (diffH < 48 ? diffH + " h" : Math.round(diffH / 24) + " days") + "</b>from now";
   }
-  document.getElementById("upcoming").innerHTML = occ.map(function (o, i) {
-    var d = o.t;
-    return '<div class="slot' + (i === 0 ? ' hi' : '') + '"><span class="d">' + d.getDate() + " " + MONTHS[d.getMonth()] + '</span><span class="t">' + esc(o.label) + (i === 0 ? ' <small>validate the two-sector plan (D-029) and the meeting days</small>' : '') + '</span></div>';
-  }).join("");
+  /* Month grid, Sunday first */
+  var MONTHS_FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var GROUND = [];   /* dated on-the-ground events { y, m (0-based), d, label }, filled in once the clients confirm */
+  var view = new Date(now.getFullYear(), now.getMonth(), 1);
+  function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
+  function renderMonth() {
+    var y = view.getFullYear(), m = view.getMonth();
+    document.getElementById("mname").textContent = MONTHS_FULL[m];
+    document.getElementById("ystamp").textContent = y;
+    document.getElementById("mlabel").textContent = MONTHS_FULL[m] + " " + y;
+    var startOffset = new Date(y, m, 1).getDay();
+    var cells = [];
+    for (var i = 0; i < 42; i++) cells.push(new Date(y, m, 1 - startOffset + i));
+    var rows = [];
+    for (var r = 0; r < 6; r++) {
+      var week = cells.slice(r * 7, r * 7 + 7);
+      if (r === 5 && week[0].getMonth() !== m) break;
+      rows.push("<tr>" + week.map(function (d) {
+        var inMonth = d.getMonth() === m;
+        var cls = (inMonth ? "" : "out") + (sameDay(d, now) ? " today" : "");
+        var evs = "";
+        if (inMonth) {
+          MEETINGS.forEach(function (mt) {
+            if (d.getDay() !== mt.day) return;
+            var wk = mt.day === 0 || mt.day === 6;
+            evs += '<span class="ev' + (wk ? ' wk' : '') + '">' + String(mt.h).padStart(2, "0") + ":" + String(mt.m).padStart(2, "0") + ' Team meeting</span>';
+          });
+          GROUND.forEach(function (g) { if (g.y === y && g.m === m && g.d === d.getDate()) evs += '<span class="ev ground">' + esc(g.label) + '</span>'; });
+        }
+        return '<td class="' + cls.trim() + '">' + (inMonth ? '<span class="n">' + d.getDate() + '</span>' + evs : '') + '</td>';
+      }).join("") + "</tr>");
+    }
+    document.getElementById("mbody").innerHTML = rows.join("");
+  }
+  document.getElementById("m-prev").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); renderMonth(); });
+  document.getElementById("m-next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); renderMonth(); });
+  renderMonth();
 
   /* ---------- News ---------- */
   var NEWS = [
