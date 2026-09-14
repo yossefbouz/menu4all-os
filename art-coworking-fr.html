@@ -173,6 +173,27 @@
   .offer .badge{position:absolute;top:-12px;left:12px;background:var(--noir);color:var(--jaune);font-size:.62rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;padding:4px 10px;border-radius:99px;white-space:nowrap}
   .two{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(14px,2.2vw,28px);align-items:start;margin-top:clamp(12px,2.2vh,20px)}
 
+  /* touchable offers + simulator */
+  .offer[data-offer]{cursor:pointer;transition:transform .15s ease,box-shadow .15s ease;user-select:none}
+  .offer[data-offer]:hover{transform:translate(-2px,-2px);box-shadow:8px 8px 0 rgba(22,19,16,.9)}
+  .offer[data-offer]:focus-visible{outline:3px solid var(--noir);outline-offset:3px}
+  .offer.is-sel{outline:3px solid var(--noir);outline-offset:3px;transform:translate(-3px,-3px);box-shadow:9px 9px 0 rgba(22,19,16,.95)}
+  .offer .sim{margin-top:10px;font-size:.78rem;font-weight:700;display:flex;flex-direction:column;align-items:flex-start;gap:5px;border-top:1.5px dashed var(--ligne);padding-top:8px;font-variant-numeric:tabular-nums}
+  .offer .cheap{display:none;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;background:var(--noir);color:var(--jaune);padding:2px 7px;border-radius:99px;white-space:nowrap}
+  .offer.is-cheap .cheap{display:inline-block}
+  .tap-hint{font-size:.8rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--encre-2);display:flex;align-items:center;gap:8px;margin-bottom:10px}
+  .tap-hint::before{content:"\261D";font-size:1rem}
+  .simbox{padding:14px 18px}
+  .simbox label{display:flex;justify-content:space-between;font-size:.85rem;font-weight:600;color:var(--encre-2);margin-bottom:4px}
+  .simbox label b{color:var(--noir);font-variant-numeric:tabular-nums}
+  .simbox input[type=range]{width:100%;accent-color:var(--noir);margin:2px 0 10px}
+  .sim-res{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+  .sim-res>div{border:2px solid var(--noir);border-radius:10px;padding:8px 12px;background:var(--jaune-pale)}
+  .sim-res .n{font-family:var(--display);font-size:1.6rem;line-height:1;font-variant-numeric:tabular-nums}
+  .sim-res .l{font-size:.76rem;color:var(--encre-2);margin-top:2px}
+  .sim-steps{font-size:.86rem;gap:8px}
+  .sim-steps li::before{width:24px;height:24px;font-size:.78rem}
+
   /* specials */
   .more{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.8vw,22px)}
   .more-card{padding:clamp(16px,2.4vh,24px) clamp(16px,2vw,22px)}
@@ -448,36 +469,41 @@
       <p class="eyebrow rv">Les offres — prix indicatifs, à valider avec Art+</p>
       <h2 class="rv">Plus le client s'engage, moins l'heure coûte</h2>
       <div class="offers rv">
-        <div class="card offer offer--base">
+        <div class="card offer offer--base"" data-offer="hourly" role="button" tabindex="0" aria-pressed="false">
           <h3>À l'heure</h3>
           <div class="price">1<small> DT</small></div>
           <div class="per">par heure</div>
           <p>Sans engagement. 2 h incluses avec une commande.</p>
+          <div class="sim"><span class="v">—</span><span class="cheap">Le moins cher</span></div>
         </div>
-        <div class="card offer">
+        <div class="card offer"" data-offer="pass5" role="button" tabindex="0" aria-pressed="false">
           <h3>Pass 5 h</h3>
           <div class="price">4<small> DT</small></div>
           <div class="per">0,80 DT / h</div>
           <p>Un crédit de 5 h, valable 30 jours, décompté à chaque visite.</p>
+          <div class="sim"><span class="v">—</span><span class="cheap">Le moins cher</span></div>
         </div>
-        <div class="card offer">
+        <div class="card offer"" data-offer="pass10" role="button" tabindex="0" aria-pressed="false">
           <span class="badge">Le plus vendu</span>
           <h3>Pass 10 h</h3>
           <div class="price">7<small> DT</small></div>
           <div class="per">0,70 DT / h</div>
           <p>Un crédit de 10 h, valable 60 jours. Idéal pour un projet ou une période d'examens.</p>
+          <div class="sim"><span class="v">—</span><span class="cheap">Le moins cher</span></div>
         </div>
-        <div class="card offer">
+        <div class="card offer"" data-offer="weekly" role="button" tabindex="0" aria-pressed="false">
           <h3>Hebdo</h3>
           <div class="price">15<small> DT</small></div>
           <div class="per">7 jours illimités</div>
           <p>Le client vient quand il veut, aussi longtemps qu'il veut, pendant une semaine.</p>
+          <div class="sim"><span class="v">—</span><span class="cheap">Le moins cher</span></div>
         </div>
-        <div class="card offer">
+        <div class="card offer"" data-offer="monthly" role="button" tabindex="0" aria-pressed="false">
           <h3>Mensuel</h3>
           <div class="price">45<small> DT</small></div>
           <div class="per">30 jours illimités</div>
           <p>Le « bureau » du freelance ou de l'étudiant régulier. Renouvelé chaque mois.</p>
+          <div class="sim"><span class="v">—</span><span class="cheap">Le moins cher</span></div>
         </div>
       </div>
       <div class="two rv">
@@ -503,15 +529,16 @@
           </svg>
           <p class="fine">Hebdo et mensuel : coût estimé pour 25 h par semaine et 90 h par mois.</p>
         </div>
-        <div>
-          <p style="font-weight:700;margin-bottom:10px">Comment marche un pass, concrètement</p>
-          <ol class="roadmap" style="font-size:.93rem">
-            <li><b>Au comptoir :</b>&nbsp;le barista vend le Pass 10 h et crée la fiche du client (nom ou téléphone). Le pass est un crédit de 10 heures.</li>
-            <li><b>À chaque visite :</b>&nbsp;il lance le chrono de la table et choisit le client dans la liste. Le chrono tourne comme d'habitude.</li>
-            <li><b>Au départ :</b>&nbsp;au lieu de facturer 1 DT/h, le système retire le temps passé du crédit. 10 h moins 2 h 20 = il reste 7 h 40. Rien à payer.</li>
-            <li><b>Crédit épuisé ou expiré :</b>&nbsp;retour automatique au tarif horaire, et le barista propose un nouveau pass.</li>
-          </ol>
-          <p class="fine">Hebdo et mensuel : illimités. Le chrono ne retire rien, il vérifie que l'abonnement est encore valide et garde l'historique des visites.</p>
+        <div class="card--soft simbox" id="simbox">
+          <p class="tap-hint">Touchez une offre pour la simuler</p>
+          <label for="simHours">Heures de coworking par mois <b id="simHoursVal">20 h</b></label>
+          <input type="range" id="simHours" min="5" max="120" step="5" value="20">
+          <div class="sim-res">
+            <div><div class="n" id="simCost">20 DT</div><div class="l">par mois avec <b id="simName">le tarif à l'heure</b></div></div>
+            <div><div class="n" id="simPerH">1,00 DT</div><div class="l">par heure réelle</div></div>
+          </div>
+          <ol class="roadmap sim-steps" id="simSteps"></ol>
+          <p class="fine">Tarif à l'heure : sans compter les 2 h incluses à chaque commande. Hebdo : 4 semaines.</p>
         </div>
       </div>
     </div>
@@ -764,6 +791,53 @@
   }
   tick();
   if (!reduce) setInterval(tick, 1000);
+
+  /* ---- touchable offers + simulator ---- */
+  (function(){
+    var NAMES = {"hourly": "le tarif à l'heure", "pass5": "le Pass 5 h", "pass10": "le Pass 10 h", "weekly": "l'abonnement hebdo", "monthly": "l'abonnement mensuel"};
+    var STEPS = {"hourly": ["Le client commande ; le barista lance le chrono de la table.", "2 h incluses avec la commande, puis 1 DT par heure entamée.", "Au départ : Stop, le montant s'affiche, le client paie au comptoir."], "credit": ["Au comptoir : le barista vend le pass et crée la fiche du client (nom ou téléphone). Le pass est un crédit d'heures.", "À chaque visite : il lance le chrono de la table et choisit le client dans la liste.", "Au départ : le temps passé est retiré du crédit (10 h − 2 h 20 = 7 h 40). Rien à payer.", "Crédit épuisé ou expiré : retour automatique au tarif horaire, le barista propose un nouveau pass."], "unlimited": ["Au comptoir : abonnement vendu, fiche client créée, date de fin enregistrée.", "À chaque visite : chrono lancé, client choisi. Rien n'est retiré, c'est illimité.", "Le système vérifie que l'abonnement est valide et garde l'historique des visites.", "À l'expiration : la tuile passe en jaune, le barista propose le renouvellement."]};
+    var TYPE = {hourly:'hourly',pass5:'credit',pass10:'credit',weekly:'unlimited',monthly:'unlimited'};
+    var MO = "/ mois", FR = true;
+    function cost(o,h){
+      if (o==='hourly') return h*1;
+      if (o==='pass5') return Math.ceil(h/5)*4;
+      if (o==='pass10') return Math.ceil(h/10)*7;
+      if (o==='weekly') return 15*4;
+      return 45;
+    }
+    function money(v,dec){ var s = dec ? v.toFixed(2) : String(Math.round(v)); return (FR ? s.replace('.',',') : s) + ' DT'; }
+    var cards = Array.prototype.slice.call(document.querySelectorAll('.offer[data-offer]'));
+    var range = document.getElementById('simHours');
+    if (!cards.length || !range) return;
+    var sel = 'hourly';
+    function render(){
+      var h = parseInt(range.value,10);
+      document.getElementById('simHoursVal').textContent = h + ' h';
+      var best = null, bestV = Infinity;
+      cards.forEach(function(c){
+        var o = c.getAttribute('data-offer'), v = cost(o,h);
+        c.querySelector('.sim .v').textContent = money(v,false) + ' ' + MO;
+        c.classList.toggle('is-sel', o===sel);
+        c.setAttribute('aria-pressed', o===sel ? 'true' : 'false');
+        if (v < bestV) { bestV = v; best = o; }
+      });
+      cards.forEach(function(c){ c.classList.toggle('is-cheap', c.getAttribute('data-offer')===best); });
+      var v = cost(sel,h);
+      document.getElementById('simCost').textContent = money(v,false);
+      document.getElementById('simPerH').textContent = money(v/h,true);
+      document.getElementById('simName').textContent = NAMES[sel];
+      var ol = document.getElementById('simSteps'); ol.textContent = '';
+      STEPS[TYPE[sel]].forEach(function(t){ var li = document.createElement('li'); li.textContent = t; ol.appendChild(li); });
+    }
+    cards.forEach(function(c){
+      function pick(){ sel = c.getAttribute('data-offer'); render(); }
+      c.addEventListener('click', pick);
+      c.addEventListener('keydown', function(e){ if (e.key==='Enter' || e.key===' ') { e.preventDefault(); e.stopPropagation(); pick(); } });
+    });
+    range.addEventListener('input', render);
+    range.addEventListener('keydown', function(e){ e.stopPropagation(); });
+    render();
+  })();
 
   var start = parseInt((location.hash || '').replace('#',''), 10);
   go(isNaN(start) ? 0 : start - 1);
