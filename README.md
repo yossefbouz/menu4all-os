@@ -9,6 +9,7 @@ Live: https://menu4all-os.vercel.app
 | [`index.html`](index.html) — **Team page** | Calendar first (two meetings a week, Tunisia time), news feed, tasks filterable by person with the share each one earns, the pay model, every decision so far, client states, open questions, the team. |
 | [`plan.html`](plan.html) — **Two-sector plan** | The Web / Marketing organisation, the shares of every contract, a **simulator** (who gets what on any amount), the marketing offers, the seven rules, this week's tasks. |
 | [`presentation.html`](presentation.html) — **Team presentation** | 15 slides for the validation meeting and onboarding (arrow keys to navigate). French version: [`presentation-fr.html`](presentation-fr.html). |
+| [`art-coworking-fr.html`](art-coworking-fr.html) — **Art+ coworking timer** | Client proposal, 10 slides: per-table timer on the barista tablet, 2 h included then 1 DT/h, passes and subscriptions (indicative prices). English version: [`art-coworking-en.html`](art-coworking-en.html). |
 
 Text sources, kept in French in the private repo and copied here:
 
