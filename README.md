@@ -31,6 +31,7 @@ Site statique, aucun build : Vercel sert les fichiers tels quels.
 
 1. Modifier le `.md` concerné dans le dépôt privé (`menu4all-deck/ops/`).
 2. Reporter le changement dans les tableaux `CLIENTS` / `D` en bas de `index.html`, ou dans `deux-secteurs.html` si c'est le modèle de rémunération qui change.
-3. Recopier ici (les numéros de téléphone des clients sont retirés au passage), `git commit` + `git push` → Vercel redéploie.
+3. Recopier ici (les numéros de téléphone des clients sont retirés au passage), `git commit` + `git push`.
+4. `vercel --prod --yes` depuis ce dossier : le projet Vercel est lié par la CLI, **un push seul ne redéploie pas**.
 
 > Version publique : les numéros de téléphone des clients ont été retirés ; ils restent dans le dépôt privé.
