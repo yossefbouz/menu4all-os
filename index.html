@@ -6,7 +6,7 @@
 <meta name="robots" content="noindex">
 <title>Menu4All Team</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Instrument+Serif&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
 <style>
   :root {
     --bg: #f5efe6; --bg-soft: #ece5da; --card: #fffdf9; --line: #d9d0c3;
@@ -83,36 +83,26 @@
   .rule { padding: 12px 16px; border-left: 3px solid var(--accent); background: var(--bg-soft); border-radius: 0 8px 8px 0; color: var(--ink-2); font-size: .95rem; }
   .rule b { color: var(--ink); }
 
-  /* Month calendar: printed-sheet look, kept light in both themes on purpose */
-  .month { border-radius: 10px; padding: 22px; background-color: #f1cfe3;
-    background-image: linear-gradient(90deg, rgba(255,255,255,.55) 50%, transparent 50%), linear-gradient(rgba(255,255,255,.55) 50%, transparent 50%);
-    background-size: 64px 64px; }
-  .paper { background: #ffffff; color: #141416; border-radius: 4px; padding: 22px 24px; display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 18px; align-items: stretch; }
-  .mside { display: flex; flex-direction: column-reverse; align-items: center; justify-content: flex-end; gap: 14px; }
-  .mname { writing-mode: vertical-rl; transform: rotate(180deg); font-family: "Instrument Serif", "Times New Roman", serif; font-size: clamp(3rem, 7vw, 5.4rem); line-height: .9; text-transform: uppercase; letter-spacing: -.02em; color: #141416; }
-  .ystamp { font-family: "JetBrains Mono", monospace; font-size: 1.05rem; border: 2px solid #141416; border-radius: 50%; padding: 12px 8px; transform: rotate(-78deg); line-height: 1; }
-  .mnav { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .mnav .lbl { font-family: "Archivo Black", sans-serif; font-size: 1rem; }
-  .mnav button { font: inherit; font-size: .84rem; font-weight: 700; padding: 5px 11px; border: 1.5px solid #141416; background: #fff; color: #141416; border-radius: 999px; cursor: pointer; }
-  .mnav button:hover, .mnav button:focus-visible { background: #d7f7a5; outline: none; }
-  .mgrid-wrap { overflow-x: auto; }
-  table.mgrid { width: 100%; min-width: 640px; border-collapse: collapse; table-layout: fixed; }
-  table.mgrid th { background: #d7f7a5; border: 1.5px solid #141416; padding: 12px 6px; font-family: "JetBrains Mono", monospace; font-weight: 500; font-size: 1rem; color: #141416; }
-  table.mgrid td { border: 1.5px solid #141416; vertical-align: top; height: 92px; padding: 6px 7px; font-family: "JetBrains Mono", monospace; font-size: .82rem; color: #141416; background: #fff; }
-  table.mgrid td.out { background: #f7f5f1; }
-  table.mgrid td .n { display: block; margin-bottom: 4px; }
-  table.mgrid td.today .n { display: inline-block; background: #141416; color: #fff; border-radius: 999px; padding: 0 7px; }
-  table.mgrid .ev { display: block; font-family: "Space Grotesk", sans-serif; font-size: .78rem; line-height: 1.25; padding: 3px 6px; border-radius: 4px; margin-top: 3px; background: #ffe3d6; color: #a8380c; font-weight: 600; white-space: normal; }
-  table.mgrid .ev.wk { background: #e6f9c8; color: #2f5b10; }
-  table.mgrid .ev.ground { background: #e9e4ff; color: #3d2f8f; }
-  .mkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: .84rem; color: #4d4a45; margin-top: 10px; }
+  /* Calendar (FullCalendar, styled to match the page) */
+  .calbox { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 18px 20px; box-shadow: var(--shadow); }
+  #fc { --fc-border-color: var(--line); --fc-page-bg-color: var(--card); --fc-neutral-bg-color: var(--bg-soft); --fc-today-bg-color: transparent;
+        --fc-event-bg-color: #e6f9c8; --fc-event-border-color: #e6f9c8; --fc-event-text-color: #2f5b10; --fc-button-bg-color: var(--ink); --fc-button-border-color: var(--ink);
+        --fc-button-text-color: var(--bg); --fc-button-hover-bg-color: var(--accent); --fc-button-hover-border-color: var(--accent); --fc-button-active-bg-color: var(--accent); --fc-button-active-border-color: var(--accent);
+        font-family: "Space Grotesk", "Segoe UI", system-ui, sans-serif; }
+  #fc .fc-toolbar-title { font-family: "Archivo Black", sans-serif; font-size: 1.35rem; }
+  #fc .fc-button { font: inherit; font-weight: 700; font-size: .84rem; border-radius: 999px; padding: 5px 12px; text-transform: none; box-shadow: none; }
+  #fc .fc-col-header-cell { background: #d7f7a5; }
+  #fc .fc-col-header-cell-cushion { font-family: "JetBrains Mono", monospace; font-weight: 500; color: #141416; padding: 10px 4px; text-decoration: none; }
+  #fc .fc-daygrid-day-number { font-family: "JetBrains Mono", monospace; font-size: .84rem; color: var(--ink-2); text-decoration: none; padding: 5px 7px; }
+  #fc .fc-day-today .fc-daygrid-day-number { background: var(--ink); color: var(--bg); border-radius: 999px; margin: 3px; padding: 1px 8px; }
+  #fc .fc-daygrid-day-frame { min-height: 84px; }
+  #fc .fc-event { border-radius: 5px; padding: 2px 6px; font-weight: 600; font-size: .8rem; }
+  #fc .fc-event.ev-ground { --fc-event-bg-color: #ffe3d6; --fc-event-border-color: #ffe3d6; --fc-event-text-color: #a8380c; }
+  #fc .fc-day-other .fc-daygrid-day-top { opacity: .35; }
+  #fc a { color: inherit; }
+  .mkey { display: flex; flex-wrap: wrap; gap: 14px; font-size: .86rem; color: var(--ink-2); margin-top: 12px; }
   .mkey span::before { content: ""; display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 6px; vertical-align: -1px; background: var(--k); }
-  @media (max-width: 720px) {
-    .paper { grid-template-columns: 1fr; }
-    .mside { flex-direction: row; justify-content: flex-start; }
-    .mname { writing-mode: horizontal-tb; transform: none; font-size: 2.6rem; }
-    .ystamp { transform: rotate(-12deg); }
-  }
+  @media (max-width: 720px) { #fc .fc-toolbar { flex-direction: column; gap: 8px; } #fc .fc-daygrid-day-frame { min-height: 56px; } #fc .fc-event { font-size: .7rem; padding: 1px 4px; } }
 
   /* News */
   .feed { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
@@ -210,23 +200,17 @@
 <header class="top">
   <span class="eyebrow">Menu4All · six people · updated 14 Sept 2026</span>
   <h1>What's next, what happened, who does what, and how we get paid.</h1>
-  <p>One page for the whole team. Meetings on weekdays and weekends. Every decision written down the same day. Nothing is owed to anyone that isn't written here.</p>
+  <p>One page for the whole team. Two meetings a week, Monday and Sunday. Every decision written down the same day. Nothing is owed to anyone that isn't written here.</p>
 </header>
 
 <section id="calendar">
   <div class="sec-head"><span class="eyebrow">Calendar</span><h2>Next meetings</h2></div>
   <div class="next" id="next-meeting"><div><div class="lbl">Next team meeting</div><div class="when" id="next-when">—</div></div><div class="in" id="next-in"></div></div>
-  <div class="month" id="month">
-    <div class="paper">
-      <div class="mside"><div class="mname" id="mname">September</div><div class="ystamp" id="ystamp">2026</div></div>
-      <div>
-        <div class="mnav"><button type="button" id="m-prev" aria-label="Previous month">&larr; Prev</button><span class="lbl" id="mlabel"></span><button type="button" id="m-next" aria-label="Next month">Next &rarr;</button></div>
-        <div class="mgrid-wrap"><table class="mgrid" aria-label="Month calendar with team meetings"><thead><tr><th>Sunday</th><th>Monday</th><th>Tuesday</th><th>Wednesday</th><th>Thursday</th><th>Friday</th><th>Saturday</th></tr></thead><tbody id="mbody"></tbody></table></div>
-        <div class="mkey"><span style="--k:#ffe3d6">Weekday meeting: 16:00 Mon (or 15:00), 21:00 Thu</span><span style="--k:#e6f9c8">Weekend meeting: 16:00 Sat, 21:00 Sun</span><span style="--k:#e9e4ff">On the ground (date to set)</span></div>
-      </div>
-    </div>
+  <div class="calbox">
+    <div id="fc"></div>
+    <div class="mkey"><span style="--k:#e6f9c8">Team meeting: every Monday and every Sunday</span><span style="--k:#ffe3d6">On the ground (date to set with the client)</span></div>
   </div>
-  <p class="rule"><b>All times are Tunisia time.</b> The days are placeholders until the first meeting confirms them (O-14). Missing without a message counts as a "no".</p>
+  <p class="rule"><b>Two meetings a week: Monday and Sunday.</b> The time is agreed at each meeting for the next one (O-14). Missing without a message counts as a "no".</p>
   <div class="box">
     <h3>This week, on the ground <small>dates to set with the clients</small></h3>
     <div class="slots">
@@ -313,75 +297,40 @@
 <footer>Sources: <code>ops/DECISIONS.md</code>, <code>ops/CLIENTS.md</code>, <code>ops/TEAM.md</code>, <code>ops/REMUNERATION.md</code> in the Menu4All repository. This page is their readable version. Rule: a decision that isn't written down doesn't exist.</footer>
 </div>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/6.1.15/index.global.min.js"></script>
 <script>
 (function () {
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
-  /* ---------- Calendar: two meetings a week, Tunisia time ---------- */
-  var MEETINGS = [{ day: 1, h: 16, m: 0, label: "Monday 16:00" }, { day: 4, h: 21, m: 0, label: "Thursday 21:00" }, { day: 6, h: 16, m: 0, label: "Saturday 16:00" }, { day: 0, h: 21, m: 0, label: "Sunday 21:00" }];
+  /* ---------- Calendar: two meetings a week, Monday and Sunday, no fixed time ---------- */
+  var MEETING_DAYS = [1, 0];
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-  function nextOccurrences(from, count) {
-    var out = [];
-    for (var i = 0; i < 35 && out.length < count; i++) {
-      var d = new Date(from.getFullYear(), from.getMonth(), from.getDate() + i);
-      MEETINGS.forEach(function (mt) {
-        if (d.getDay() !== mt.day) return;
-        var t = new Date(d.getFullYear(), d.getMonth(), d.getDate(), mt.h, mt.m);
-        if (t > from) out.push({ t: t, label: mt.label });
-      });
-    }
-    return out.slice(0, count);
+  var now = new Date(), today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+  var next = null;
+  for (var i = 0; i < 8 && !next; i++) { var d = new Date(today.getFullYear(), today.getMonth(), today.getDate() + i); if (MEETING_DAYS.indexOf(d.getDay()) !== -1) next = d; }
+  var daysAway = Math.round((next - today) / 864e5);
+  document.getElementById("next-when").textContent = DAYS[next.getDay()] + " " + next.getDate() + " " + MONTHS[next.getMonth()] + " · time to agree";
+  document.getElementById("next-in").innerHTML = "<b>" + (daysAway === 0 ? "today" : daysAway === 1 ? "tomorrow" : daysAway + " days") + "</b>" + (daysAway > 1 ? "from now" : "");
+
+  var GROUND = [];   /* dated on-the-ground events { date: "2026-09-20", title: "Caprice handover" }, filled in once the clients confirm */
+  if (window.FullCalendar) {
+    var cal = new FullCalendar.Calendar(document.getElementById("fc"), {
+      initialView: "dayGridMonth", firstDay: 0, height: "auto", fixedWeekCount: false, dayHeaderFormat: { weekday: "long" },
+      headerToolbar: { left: "prev", center: "title", right: "next" }, buttonText: { prev: "← Prev", next: "Next →" },
+      events: [
+        { title: "Team meeting", daysOfWeek: [1], allDay: true },
+        { title: "Team meeting", daysOfWeek: [0], allDay: true }
+      ].concat(GROUND.map(function (g) { return { title: g.title, start: g.date, allDay: true, classNames: ["ev-ground"] }; }))
+    });
+    cal.render();
+  } else {
+    document.getElementById("fc").innerHTML = '<p class="empty">The calendar library did not load. Meetings: every Monday and every Sunday.</p>';
   }
-  var now = new Date();
-  var occ = nextOccurrences(now, 8);
-  if (occ.length) {
-    var n = occ[0].t;
-    document.getElementById("next-when").textContent = DAYS[n.getDay()] + " " + n.getDate() + " " + MONTHS[n.getMonth()] + " · " + String(n.getHours()).padStart(2, "0") + ":" + String(n.getMinutes()).padStart(2, "0") + " Tunisia time";
-    var diffH = Math.round((n - now) / 36e5);
-    document.getElementById("next-in").innerHTML = "<b>" + (diffH < 48 ? diffH + " h" : Math.round(diffH / 24) + " days") + "</b>from now";
-  }
-  /* Month grid, Sunday first */
-  var MONTHS_FULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-  var GROUND = [];   /* dated on-the-ground events { y, m (0-based), d, label }, filled in once the clients confirm */
-  var view = new Date(now.getFullYear(), now.getMonth(), 1);
-  function sameDay(a, b) { return a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(); }
-  function renderMonth() {
-    var y = view.getFullYear(), m = view.getMonth();
-    document.getElementById("mname").textContent = MONTHS_FULL[m];
-    document.getElementById("ystamp").textContent = y;
-    document.getElementById("mlabel").textContent = MONTHS_FULL[m] + " " + y;
-    var startOffset = new Date(y, m, 1).getDay();
-    var cells = [];
-    for (var i = 0; i < 42; i++) cells.push(new Date(y, m, 1 - startOffset + i));
-    var rows = [];
-    for (var r = 0; r < 6; r++) {
-      var week = cells.slice(r * 7, r * 7 + 7);
-      if (r === 5 && week[0].getMonth() !== m) break;
-      rows.push("<tr>" + week.map(function (d) {
-        var inMonth = d.getMonth() === m;
-        var cls = (inMonth ? "" : "out") + (sameDay(d, now) ? " today" : "");
-        var evs = "";
-        if (inMonth) {
-          MEETINGS.forEach(function (mt) {
-            if (d.getDay() !== mt.day) return;
-            var wk = mt.day === 0 || mt.day === 6;
-            evs += '<span class="ev' + (wk ? ' wk' : '') + '">' + String(mt.h).padStart(2, "0") + ":" + String(mt.m).padStart(2, "0") + ' Team meeting</span>';
-          });
-          GROUND.forEach(function (g) { if (g.y === y && g.m === m && g.d === d.getDate()) evs += '<span class="ev ground">' + esc(g.label) + '</span>'; });
-        }
-        return '<td class="' + cls.trim() + '">' + (inMonth ? '<span class="n">' + d.getDate() + '</span>' + evs : '') + '</td>';
-      }).join("") + "</tr>");
-    }
-    document.getElementById("mbody").innerHTML = rows.join("");
-  }
-  document.getElementById("m-prev").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() - 1, 1); renderMonth(); });
-  document.getElementById("m-next").addEventListener("click", function () { view = new Date(view.getFullYear(), view.getMonth() + 1, 1); renderMonth(); });
-  renderMonth();
 
   /* ---------- News ---------- */
   var NEWS = [
-    { d: "14 Sep", h: "Two sectors, six people, one pay model — proposed", b: "Aziz and Drago join. Web (Youssef, Bayram, Haroun) and Marketing (Haroun, Idriss, Aziz, Drago). Every contract is shared in fixed percentages on cash collected. Team meetings on weekdays and weekends. This site launched.", who: "Youssef · D-029, D-030", big: true },
+    { d: "14 Sep", h: "Two sectors, six people, one pay model — proposed", b: "Aziz and Drago join. Web (Youssef, Bayram, Haroun) and Marketing (Haroun, Idriss, Aziz, Drago). Every contract is shared in fixed percentages on cash collected. Team meetings every Monday and Sunday. This site launched.", who: "Youssef · D-029, D-030", big: true },
     { d: "13 Sep", h: "Cap Grill marked DELIVERED, Caprice READY TO HAND OVER", b: "The team log was created: decisions, clients, team. A second manager account for Cap Grill (Gabrielle) still needs its SQL script run.", who: "Youssef · D-026, D-027" },
     { d: "08 Sep", h: "Cap Grill passed its production check before the demo", b: "Everything public tested on the live site: 128 dishes in 6 languages, real form, redirects, Lighthouse. Four fixes deployed.", who: "Youssef · D-025" },
     { d: "07 Sep", h: "Cap Grill go-live prepared; MANEKEN prototype built", b: "Real database audited (235 test orders), backed up, delete script written for Youssef to run by hand. A clickable demo for an ice-cream business was built the same day.", who: "Youssef · D-024" },
@@ -462,7 +411,7 @@
     { id: "D-027", d: "13 Sep", t: "Extra manager account for Cap Grill (Gabrielle)", b: "Created through public sign-up, so unconfirmed: sql/0008 confirms it and grants full manager access. To run.", who: "Youssef", flag: "Public sign-up is open on the Supabase project: close it (O-8)." },
     { id: "D-028", d: "14 Sep", t: "The negotiators have names: Bayram and Idriss", b: "They meet the manager, name the category and the daily pain, then hand over for a demo on the real menu.", who: "Youssef" },
     { id: "D-029", d: "14 Sep", t: "Two sectors, six people, pay by shares — PROPOSED", b: "Web and Marketing sell to the same clients. One-off: Closing 15 · Lead 5 · Base 10 · Delivery 50 · Fund 20. Recurring: Closing 10 (12 months) · Lead 5 (12 months) · Delivery 60 · Fund 25. Marketing offers proposed: Presence 250, Growth 450 per month, Shoot 300, Launch 600.", who: "Youssef", flag: "To validate at the next meeting (O-9 to O-13). Until then, nothing is owed to anyone on this basis." },
-    { id: "D-030", d: "14 Sep", t: "Team meetings on weekdays and weekends; this week's assignments", b: "Four slots a week at 16:00 (or 15:00) and 21:00 Tunisia time, two on weekdays and two at the weekend, days to confirm. Idriss and Bayram: Caprice handover, Art+ meeting, last Cap Grill QR codes. Youssef: the Art+ presentation. Aziz, Drago and Idriss: the marketing prices.", who: "Youssef" }
+    { id: "D-030", d: "14 Sep", t: "Two team meetings a week, Monday and Sunday; this week's assignments", b: "Every Monday and every Sunday; the time is agreed at each meeting for the next one. Idriss and Bayram: Caprice handover, Art+ meeting, last Cap Grill QR codes. Youssef: the Art+ presentation. Aziz, Drago and Idriss: the marketing prices.", who: "Youssef" }
   ];
   document.getElementById("dlist").innerHTML = D.map(function (x) {
     return '<div class="d" data-who="' + esc(x.who) + (x.who2 ? "," + esc(x.who2) : "") + '" data-flag="' + (x.flag ? 1 : 0) + '"><div class="date">' + esc(x.d) + '</div><div class="id">' + esc(x.id) + '</div><div><div class="t">' + esc(x.t) + '</div><div class="b">' + esc(x.b) + '</div><div class="w">' + esc(x.who) + (x.who2 ? " · " + esc(x.who2) : "") + '</div>' + (x.flag ? '<div class="flag">' + esc(x.flag) + '</div>' : '') + '</div></div>';
@@ -500,7 +449,7 @@
     ["O-11", "'Two sectors' discount: 10% on the cheaper line?", "Youssef + Haroun"],
     ["O-12", "Ad budget always paid by the client, never advanced by the fund?", "Haroun"],
     ["O-13", "Exact first names and roles of Aziz, Drago, Idriss; Marketing lead confirmed?", "Youssef"],
-    ["O-14", "Meeting days: which weekdays and which weekend days for the 16:00 and 21:00 slots?", "Everyone"]
+    ["O-14", "Meeting time for the Monday and Sunday meetings (agreed at each meeting for the next one, or fixed once?)", "Everyone"]
   ];
   document.getElementById("open-list").innerHTML = OPEN.map(function (o) { return '<tr><td class="id">' + o[0] + '</td><td>' + esc(o[1]) + '</td><td class="who">' + esc(o[2]) + '</td></tr>'; }).join("");
 })();
