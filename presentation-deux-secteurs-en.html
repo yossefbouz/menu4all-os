@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Menu4All — Two Sectors (team meeting, September 2026)</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* "Bold Signal" theme: charcoal + orange, same as the other Menu4All decks. Single theme on purpose. */
+:root {
+  --bg: #141416; --bg-soft: #1c1c20; --card: #202024; --line: rgba(245,239,230,.12);
+  --ink: #f5efe6; --ink-2: rgba(245,239,230,.72); --ink-3: rgba(245,239,230,.5);
+  --accent: #ff5a1f; --accent-soft: rgba(255,90,31,.14); --gold: #ffb800;
+  --web: #7dbdf3; --mkt: #f0c45a;
+  --p-sig: #ff5a1f; --p-app: #f0a077; --p-socle: #a48fc9; --p-real: #6fd39a; --p-caisse: #8f8a81;
+  --display: "Archivo Black", "Arial Black", sans-serif; --body: "Space Grotesk", "Segoe UI", system-ui, sans-serif; --mono: "JetBrains Mono", Consolas, monospace;
+  --title: clamp(1.6rem, 5vw, 4rem); --h2: clamp(1.3rem, 3.4vw, 2.4rem); --h3: clamp(1rem, 2.2vw, 1.5rem);
+  --text: clamp(.8rem, 1.5vw, 1.1rem); --small: clamp(.68rem, 1vw, .86rem);
+  --pad: clamp(1rem, 4vw, 4rem); --gap: clamp(.5rem, 2vw, 1.8rem);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+/* No scroll-behavior: smooth with mandatory snap (rule D-013). */
+html { scroll-snap-type: y mandatory; }
+body { background: var(--bg); color: var(--ink); font-family: var(--body); font-size: var(--text); line-height: 1.5; overflow-x: hidden; }
+.slide { width: 100vw; height: 100vh; height: 100dvh; overflow: hidden; scroll-snap-align: start; display: flex; flex-direction: column; position: relative; }
+.slide-content { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: var(--gap); padding: var(--pad); width: 100%; max-width: 1240px; margin: 0 auto; position: relative; z-index: 2; overflow: hidden; }
+.slide::after { content: attr(data-n); position: absolute; right: var(--pad); bottom: calc(var(--pad) * .5); font-family: var(--mono); font-size: var(--small); color: var(--ink-3); }
+h1 { font-family: var(--display); font-size: var(--title); line-height: 1.02; letter-spacing: -.01em; text-wrap: balance; }
+h2 { font-family: var(--display); font-size: var(--h2); line-height: 1.08; letter-spacing: -.01em; text-wrap: balance; }
+h3 { font-size: var(--h3); font-weight: 700; line-height: 1.2; }
+.eyebrow { font-size: var(--small); text-transform: uppercase; letter-spacing: .14em; color: var(--accent); font-weight: 700; }
+.lead { color: var(--ink-2); max-width: 62ch; font-size: clamp(.9rem, 1.8vw, 1.35rem); }
+.muted { color: var(--ink-3); font-size: var(--small); }
+b { color: var(--ink); }
+.mono { font-family: var(--mono); font-variant-numeric: tabular-nums; }
+.accent { color: var(--accent); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .slide.in .reveal { animation: rise .55s cubic-bezier(.2,.7,.2,1) both; }
+  .slide.in .reveal:nth-child(2) { animation-delay: .08s; } .slide.in .reveal:nth-child(3) { animation-delay: .16s; } .slide.in .reveal:nth-child(4) { animation-delay: .24s; }
+  @keyframes rise { from { opacity: .001; transform: translateY(14px); } to { opacity: 1; transform: none; } }
+}
+
+.progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--accent); width: 0; z-index: 60; transition: width .2s; }
+.nav-dots { position: fixed; right: 14px; top: 50%; transform: translateY(-50%); display: flex; flex-direction: column; gap: 8px; z-index: 60; }
+.nav-dots button { width: 8px; height: 8px; border-radius: 50%; border: 0; background: rgba(245,239,230,.25); cursor: pointer; padding: 0; }
+.nav-dots button.active { background: var(--accent); transform: scale(1.4); }
+.nav-dots button:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.counter { position: fixed; left: var(--pad); bottom: calc(var(--pad) * .5); font-family: var(--mono); font-size: var(--small); color: var(--ink-3); z-index: 60; }
+.counter .cur { color: var(--accent); }
+.keyboard-hint { position: fixed; right: 40px; bottom: calc(var(--pad) * .5); font-size: var(--small); color: var(--ink-3); z-index: 60; }
+.lang { position: fixed; top: 14px; right: 40px; z-index: 60; font-family: var(--mono); font-size: var(--small); color: var(--ink-2); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--bg-soft); }
+.lang:hover, .lang:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+@media (max-width: 600px) { .nav-dots, .keyboard-hint { display: none; } .lang { right: 14px; } }
+@media (max-height: 600px) { .nav-dots, .keyboard-hint, .ghost { display: none !important; } :root { --gap: .6rem; } }
+
+.ghost { position: absolute; right: -2vw; bottom: -4vh; font-family: var(--display); font-size: clamp(8rem, 28vw, 24rem); line-height: 1; color: rgba(245,239,230,.035); z-index: 1; pointer-events: none; user-select: none; }
+.stripe { position: absolute; left: 0; top: 0; bottom: 0; width: 6px; background: var(--accent); z-index: 1; }
+.s-title { background: radial-gradient(120% 80% at 80% 100%, rgba(255,90,31,.22), transparent 60%), var(--bg); }
+
+.grid { display: grid; gap: var(--gap); }
+.g2 { grid-template-columns: 1fr 1fr; } .g3 { grid-template-columns: repeat(3, 1fr); } .g4 { grid-template-columns: repeat(4, 1fr); }
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: clamp(.8rem, 2vw, 1.5rem); display: flex; flex-direction: column; gap: .5rem; }
+.card.top-web { border-top: 4px solid var(--web); } .card.top-mkt { border-top: 4px solid var(--mkt); }
+.card h3.web { color: var(--web); } .card h3.mkt { color: var(--mkt); }
+.stat .n { font-family: var(--display); font-size: clamp(1.6rem, 4.5vw, 3.4rem); line-height: 1; color: var(--accent); }
+.stat .l { color: var(--ink-2); font-size: var(--small); }
+.chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.chip { padding: .3rem .7rem; border-radius: 999px; background: rgba(245,239,230,.08); font-weight: 600; font-size: var(--small); }
+.chip.lead { background: var(--accent-soft); color: var(--accent); }
+.chip.dash { outline: 1px dashed currentColor; outline-offset: -1px; background: transparent; }
+.chip.new { background: rgba(255,184,0,.14); color: var(--gold); }
+
+.bar { display: flex; height: clamp(44px, 9vh, 76px); border-radius: 8px; overflow: hidden; }
+.bar span { display: flex; align-items: center; justify-content: center; font-family: var(--display); font-size: clamp(.8rem, 1.8vw, 1.3rem); color: #141416; white-space: nowrap; overflow: hidden; }
+.seg-sig { background: var(--p-sig); } .seg-app { background: var(--p-app); } .seg-socle { background: var(--p-socle); } .seg-real { background: var(--p-real); } .seg-caisse { background: var(--p-caisse); }
+.legend { display: grid; grid-template-columns: repeat(5, 1fr); gap: .6rem; }
+.legend div { display: flex; flex-direction: column; gap: .15rem; border-left: 4px solid var(--c); padding-left: .6rem; font-size: var(--small); color: var(--ink-2); }
+.legend div b { font-size: var(--text); }
+.legend .sig { --c: var(--p-sig); } .legend .app { --c: var(--p-app); } .legend .socle { --c: var(--p-socle); } .legend .real { --c: var(--p-real); } .legend .caisse { --c: var(--p-caisse); }
+
+table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; }
+th, td { text-align: left; padding: clamp(.35rem, 1vh, .7rem) .6rem; border-bottom: 1px solid var(--line); font-size: clamp(.75rem, 1.4vw, 1.05rem); vertical-align: top; }
+th { font-size: var(--small); text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3); font-weight: 600; }
+td.num, th.num { text-align: right; white-space: nowrap; }
+tr.total td { font-family: var(--display); border-bottom: 0; border-top: 2px solid var(--ink); }
+td.who { color: var(--accent); font-weight: 600; white-space: nowrap; }
+td.id { font-family: var(--mono); color: var(--accent); white-space: nowrap; }
+
+ol.rules { list-style: none; counter-reset: r; display: grid; grid-template-columns: 1fr 1fr; gap: .6rem; }
+ol.rules li { counter-increment: r; display: grid; grid-template-columns: 2.2rem 1fr; gap: .5rem; padding: .7rem .9rem; background: var(--card); border: 1px solid var(--line); border-radius: 8px; color: var(--ink-2); font-size: clamp(.75rem, 1.4vw, 1rem); }
+ol.rules li::before { content: counter(r); font-family: var(--display); font-size: clamp(1.1rem, 2.4vw, 1.7rem); color: var(--accent); line-height: 1; }
+.offer { display: grid; grid-template-columns: 1fr auto; gap: .5rem; align-items: baseline; }
+.offer .p { font-family: var(--display); color: var(--gold); white-space: nowrap; font-size: clamp(1rem, 2.4vw, 1.6rem); }
+.offer .p small { display: block; font-family: var(--body); color: var(--ink-3); font-size: var(--small); font-weight: 500; }
+.callout { border-left: 4px solid var(--accent); background: var(--accent-soft); padding: .8rem 1rem; border-radius: 0 8px 8px 0; color: var(--ink-2); }
+.link { color: var(--accent); font-family: var(--mono); font-size: var(--small); word-break: break-all; }
+
+@media (max-width: 700px) {
+  .g2, .g3, .g4, ol.rules { grid-template-columns: 1fr; }
+  .legend { grid-template-columns: 1fr 1fr; }
+  .bar span { font-size: .75rem; }
+  .card { padding: .7rem; }
+  .hide-m { display: none; }
+}
+</style>
+</head>
+<body>
+<noscript><style>.reveal{animation:none !important}</style></noscript>
+<div class="progress" id="progress"></div>
+<nav class="nav-dots" id="dots" aria-label="Slide navigation"></nav>
+<div class="counter" id="counter"><span class="cur">01</span> / <span id="total">15</span></div>
+<div class="keyboard-hint">← → to navigate</div>
+<a class="lang" href="presentation-deux-secteurs.html" lang="fr" hreflang="fr">Version française</a>
+
+<!-- 1 -->
+<section class="slide s-title" data-n="" aria-label="Title">
+  <div class="stripe"></div>
+  <div class="slide-content">
+    <div class="eyebrow reveal">Menu4All · Team meeting · September 2026</div>
+    <h1 class="reveal">Two sectors,<br>six people,<br>one way to get paid.</h1>
+    <p class="lead reveal">What we sell, who sells what, and how every dinar we collect is shared. A proposal to validate together today.</p>
+    <p class="muted reveal">Proposal D-029, 14 Sept 2026 · Youssef · Nothing is owed to anyone while this line says "PROPOSED".</p>
+  </div>
+  <div class="ghost">×2</div>
+</section>
+
+<!-- 2 -->
+<section class="slide" data-n="02" aria-label="Where we stand">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Where we stand</div>
+    <h2 class="reveal">One client delivered, one ready, four to negotiate.</h2>
+    <div class="grid g4 reveal">
+      <div class="card stat"><span class="n">1</span><span class="l"><b>Cap Grill</b> — delivered, live on capgrill.org since 3 Sept. Gold, 1,500 DT.</span></div>
+      <div class="card stat"><span class="n">1</span><span class="l"><b>Caprice</b> — ready to hand over: digital menu (Haroun) + stock module (Youssef).</span></div>
+      <div class="card stat"><span class="n">4</span><span class="l"><b>To negotiate</b> — Art+ (2 venues), Bistrot+, Fares, Captain.</span></div>
+      <div class="card stat"><span class="n mono" style="font-size:clamp(1.1rem,2.8vw,2.1rem)">≈ 5,100 – 5,600 DT</span><span class="l">Pipeline to negotiate, August price grid.</span></div>
+    </div>
+    <p class="lead reveal">The product holds up. What's missing is people to sell it, and more things to sell to the same client.</p>
+  </div>
+</section>
+
+<!-- 3 -->
+<section class="slide" data-n="03" aria-label="Menu4All in 60 seconds">
+  <div class="slide-content">
+    <div class="eyebrow reveal">For Aziz and Drago: Menu4All in 60 seconds</div>
+    <h2 class="reveal">We give cafés and restaurants a digital presence they can run themselves.</h2>
+    <div class="grid g4 reveal">
+      <div class="card"><h3>Bronze</h3><p class="muted">QR + dedicated website, 2 languages</p><p class="mono accent">800 DT · 79 DT/month</p></div>
+      <div class="card"><h3>Silver</h3><p class="muted">+ 3 languages, photos and ingredients</p><p class="mono accent">1,000 DT · 99 DT/month</p></div>
+      <div class="card" style="border-color:var(--accent)"><h3>Gold ⭐</h3><p class="muted">+ ordering, reservations, manager dashboard</p><p class="mono accent">1,500 DT · 139 DT/month</p></div>
+      <div class="card"><h3>Diamond</h3><p class="muted">+ dedicated mobile app</p><p class="mono accent">6,000 DT · 549 DT/month</p></div>
+    </div>
+    <p class="muted reveal">Three client categories: tourist, local premium, study café. Design only 300 DT, maintenance 50–100 DT per 2 months. The September grid (O-1) is still to be decided.</p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section class="slide" data-n="04" aria-label="What changes">
+  <div class="slide-content">
+    <div class="eyebrow reveal">What changes</div>
+    <h2 class="reveal">From four to six. And from one sector to two.</h2>
+    <div class="grid g2 reveal">
+      <div class="card"><h3>Before (13 Sept)</h3><div class="chips"><span class="chip">Youssef · dev</span><span class="chip">Haroun · dev</span><span class="chip">Bayram · field</span><span class="chip">Idriss · field</span></div><p class="muted">Two developers, two negotiators. One thing to sell: the website.</p></div>
+      <div class="card" style="border-color:var(--accent)"><h3>Now</h3><div class="chips"><span class="chip">Youssef</span><span class="chip">Haroun</span><span class="chip">Bayram</span><span class="chip">Idriss</span><span class="chip new">Aziz</span><span class="chip new">Drago</span></div><p class="muted">Two sectors selling to the same clients. Anyone can bring in and close a client.</p></div>
+    </div>
+    <div class="callout reveal">The question we couldn't settle: <b>how do six people get paid?</b> The answer is in the next slides.</div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section class="slide" data-n="05" aria-label="The two sectors">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The two sectors</div>
+    <div class="grid g2 reveal">
+      <div class="card top-web"><h3 class="web">Web</h3><p class="muted">Websites, digital menus, table QR codes, manager dashboard, modules (stock, table board), maintenance, hosting.</p><div class="chips"><span class="chip lead">Youssef · lead</span><span class="chip">Bayram</span><span class="chip dash">Haroun</span></div></div>
+      <div class="card top-mkt"><h3 class="mkt">Marketing</h3><p class="muted">Social media, content, photo and video shoots, sponsored campaigns, Google Business profile.</p><div class="chips"><span class="chip lead">Haroun · lead</span><span class="chip">Idriss</span><span class="chip new">Aziz</span><span class="chip new">Drago</span></div></div>
+    </div>
+    <div class="callout reveal"><b>Haroun is the bridge.</b> Every web client gets offered a marketing pack; every marketing client gets offered a web pack.</div>
+    <p class="muted reveal">The Marketing lead, and the exact first names of Aziz and Drago, are to be confirmed today (O-13).</p>
+  </div>
+</section>
+
+<!-- 6 -->
+<section class="slide" data-n="06" aria-label="The principle">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The principle</div>
+    <h2 class="reveal">You get paid for the work you did.<br><span class="accent">Not for being here.</span></h2>
+    <p class="lead reveal">Every dinar <b>collected</b> on a contract is cut into fixed shares. Each share goes to the person who did the matching work: finding, closing, building, having built the base. The rest goes to the shared fund.</p>
+    <p class="muted reveal">No salary, no "founder" cut on every contract. The base (the reusable core code) is paid because it is reused.</p>
+  </div>
+  <div class="ghost">%</div>
+</section>
+
+<!-- 7 -->
+<section class="slide" data-n="07" aria-label="The five shares">
+  <div class="slide-content">
+    <div class="eyebrow reveal">One-off contract — Bronze, Silver, Gold, Diamond, Design only, Shoot, Launch</div>
+    <h2 class="reveal">The five shares</h2>
+    <div class="bar reveal" role="img" aria-label="Closing 15%, Lead 5%, Base 10%, Delivery 50%, Fund 20%">
+      <span class="seg-sig" style="flex:15">15 %</span><span class="seg-app" style="flex:5">5</span><span class="seg-socle" style="flex:10">10 %</span><span class="seg-real" style="flex:50">50 %</span><span class="seg-caisse" style="flex:20">20 %</span>
+    </div>
+    <div class="legend reveal">
+      <div class="sig"><b>Closing</b>Whoever ran the negotiation and got the signature. Two people: half each.</div>
+      <div class="app"><b>Lead</b>Whoever found the client. Stacks with closing.</div>
+      <div class="socle"><b>Base</b>Youssef and Haroun, for the reused core code. Marketing: goes to the fund until there is a marketing kit.</div>
+      <div class="real"><b>Delivery</b>Those who delivered, by weights written down <b>before</b> starting.</div>
+      <div class="caisse"><b>Shared fund</b>Domains, hosting, tools, printing, travel, reserve.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 8 -->
+<section class="slide" data-n="08" aria-label="Recurring">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Recurring contract — monthly 79 / 99 / 139 / 549 DT, maintenance, hosting, monthly marketing packs</div>
+    <h2 class="reveal">On monthly revenue, delivery weighs more.</h2>
+    <div class="bar reveal" role="img" aria-label="Closing 10%, Lead 5%, Delivery 60%, Fund 25%">
+      <span class="seg-sig" style="flex:10">10 %</span><span class="seg-app" style="flex:5">5</span><span class="seg-real" style="flex:60">60 %</span><span class="seg-caisse" style="flex:25">25 %</span>
+    </div>
+    <div class="grid g3 reveal">
+      <div class="card"><h3>Closing and Lead: 12 months</h3><p class="muted">Whoever closed gets 10% every month for one year. After that, the share goes to the fund.</p></div>
+      <div class="card"><h3>No base share</h3><p class="muted">The base is paid on the initial sale, not every month.</p></div>
+      <div class="card"><h3>Adjustable weights</h3><p class="muted">Who does the month's work can change: delivery weights are reviewed every quarter.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 -->
+<section class="slide" data-n="09" aria-label="Example A">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Example A — a Gold website at 1,500 DT</div>
+    <h2 class="reveal">Bayram finds and closes. Youssef and Haroun build it 70 / 30.</h2>
+    <div class="grid g2 reveal">
+      <table>
+        <thead><tr><th>Share</th><th>To whom</th><th class="num">DT</th></tr></thead>
+        <tbody>
+          <tr><td>Closing 15%</td><td>Bayram</td><td class="num">225</td></tr>
+          <tr><td>Lead 5%</td><td>Bayram</td><td class="num">75</td></tr>
+          <tr><td>Base 10%</td><td>Youssef 75 · Haroun 75</td><td class="num">150</td></tr>
+          <tr><td>Delivery 50%</td><td>Youssef 525 · Haroun 225</td><td class="num">750</td></tr>
+          <tr><td>Fund 20%</td><td>Menu4All</td><td class="num">300</td></tr>
+        </tbody>
+      </table>
+      <div class="card">
+        <h3>Result</h3>
+        <table>
+          <tbody>
+            <tr><td>Youssef</td><td class="num">600 DT</td></tr>
+            <tr><td>Bayram</td><td class="num">300 DT</td></tr>
+            <tr><td>Haroun</td><td class="num">300 DT</td></tr>
+            <tr><td>Fund</td><td class="num">300 DT</td></tr>
+            <tr class="total"><td>Total</td><td class="num">1,500 DT</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">Paid in three instalments, as the client pays: 40% at signature, 30% after the trial, 30% at the end.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 10 -->
+<section class="slide" data-n="10" aria-label="Example B">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Example B — a "Growth" marketing pack at 450 DT per month</div>
+    <h2 class="reveal">Idriss brings the lead, Aziz closes. Drago and Aziz deliver 60 / 40.</h2>
+    <div class="grid g2 reveal">
+      <table>
+        <thead><tr><th>Share</th><th>To whom</th><th class="num">DT / month</th></tr></thead>
+        <tbody>
+          <tr><td>Closing 10%</td><td>Aziz, for 12 months</td><td class="num">45</td></tr>
+          <tr><td>Lead 5%</td><td>Idriss, for 12 months</td><td class="num">22.50</td></tr>
+          <tr><td>Delivery 60%</td><td>Drago 162 · Aziz 108</td><td class="num">270</td></tr>
+          <tr><td>Fund 25%</td><td>Menu4All</td><td class="num">112.50</td></tr>
+        </tbody>
+      </table>
+      <div class="card">
+        <h3>Result, every month</h3>
+        <table>
+          <tbody>
+            <tr><td>Drago</td><td class="num">162 DT</td></tr>
+            <tr><td>Aziz</td><td class="num">153 DT</td></tr>
+            <tr><td>Idriss</td><td class="num">22.50 DT</td></tr>
+            <tr><td>Fund</td><td class="num">112.50 DT</td></tr>
+            <tr class="total"><td>Total</td><td class="num">450 DT</td></tr>
+          </tbody>
+        </table>
+        <p class="muted">A mixed contract (Gold website + Growth) is split line by line: A for the website, B for the monthly pack.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 11 -->
+<section class="slide" data-n="11" aria-label="Marketing offers">
+  <div class="slide-content">
+    <div class="eyebrow reveal">What the Marketing sector sells — proposed prices, to validate</div>
+    <h2 class="reveal">Four offers, aligned with the "Gold = 139 DT per month" logic.</h2>
+    <div class="grid g2 reveal">
+      <div class="card"><div class="offer"><h3>Presence</h3><span class="p">250 DT<small>per month</small></span></div><p class="muted">8 posts and 4 stories per week, replies to Google and Instagram reviews, one-page monthly report.</p></div>
+      <div class="card"><div class="offer"><h3>Growth</h3><span class="p">450 DT<small>per month</small></span></div><p class="muted">12 posts and 4 reels, one shoot per month, one managed sponsored campaign (ad budget paid by the client), monthly report.</p></div>
+      <div class="card"><div class="offer"><h3>Shoot</h3><span class="p">300 DT<small>one-off</small></span></div><p class="muted">Half-day photo and video on site, 30 edited photos and 5 raw reels, delivered in 5 days.</p></div>
+      <div class="card"><div class="offer"><h3>Launch</h3><span class="p">600 DT<small>one-off</small></span></div><p class="muted">Instagram, Facebook and Google Business pages created or brought up to standard, post identity, one month of content, one shoot.</p></div>
+    </div>
+    <p class="muted reveal">First clients are already there: Cap Grill (delivered, photos already online) and Caprice (ready to hand over). "Two sectors" discount: 10% on the cheaper line (O-11).</p>
+  </div>
+</section>
+
+<!-- 12 -->
+<section class="slide" data-n="12" aria-label="The seven rules">
+  <div class="slide-content">
+    <div class="eyebrow reveal">The seven rules</div>
+    <ol class="rules reveal">
+      <li><span><b>Paid on cash collected, never on signature.</b> If the client doesn't pay the last instalment, nobody gets it.</span></li>
+      <li><span><b>Everything is written before we start.</b> Who brought the lead, who closed, who delivers, with which weights. No line, no payment.</span></li>
+      <li><span><b>One contract, one owner.</b> They answer the client and trigger the payments.</span></li>
+      <li><span><b>Hats stack.</b> Bring, close and deliver the same contract, and you get all three shares.</span></li>
+      <li><span><b>You can sell the other sector.</b> A marketing member who closes a Gold website gets the Closing share.</span></li>
+      <li><span><b>A mixed contract is split line by line.</b> The website follows the one-off grid, the monthly pack the recurring grid.</span></li>
+      <li><span><b>A dispute is settled by two.</b> Youssef and Haroun decide together, and it's written down.</span></li>
+    </ol>
+    <p class="muted reveal">Every client payment and every payout is logged in the payments ledger. Payout within 7 days.</p>
+  </div>
+</section>
+
+<!-- 13 -->
+<section class="slide" data-n="13" aria-label="This week">
+  <div class="slide-content">
+    <div class="eyebrow reveal">Who does what, now</div>
+    <table class="reveal">
+      <thead><tr><th>What</th><th>Who</th><th class="hide-m">When</th></tr></thead>
+      <tbody>
+        <tr><td>Validate today: the six people, the two sectors, the percentages, the marketing offers</td><td class="who">Everyone</td><td class="hide-m">Today</td></tr>
+        <tr><td>Write decision D-029 with what was validated, and the differences</td><td class="who">Youssef</td><td class="hide-m">Same day</td></tr>
+        <tr><td>Settle the official Web price grid (O-1): without it, no website + marketing bundle</td><td class="who">Youssef</td><td class="hide-m">Week of 15 Sept</td></tr>
+        <tr><td>Marketing kit v1: 6 post templates, one-month sample calendar, shoot checklist, report template</td><td class="who">Haroun, Aziz, Drago</td><td class="hide-m">Week of 22 Sept</td></tr>
+        <tr><td>First marketing client: pitch Presence to Cap Grill and Caprice</td><td class="who">Idriss, Aziz</td><td class="hide-m">Week of 22 Sept</td></tr>
+        <tr><td>Payments ledger opened, Cap Grill entered according to the retroactivity decision</td><td class="who">Youssef</td><td class="hide-m">After the meeting</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- 14 -->
+<section class="slide" data-n="14" aria-label="To decide">
+  <div class="slide-content">
+    <div class="eyebrow reveal">To decide today</div>
+    <table class="reveal">
+      <thead><tr><th>#</th><th>Question</th><th>Who decides</th></tr></thead>
+      <tbody>
+        <tr><td class="id">O-9</td><td>Apply the grid retroactively to Cap Grill (1,500 DT) and Caprice? Proposal: yes for Closing and Lead, the rest as already agreed.</td><td class="who">Youssef, Haroun, Bayram, Idriss</td></tr>
+        <tr><td class="id">O-10</td><td>Founder shares of the fund's year-end surplus.</td><td class="who">Youssef, Haroun</td></tr>
+        <tr><td class="id">O-11</td><td>"Two sectors" discount: 10% on the cheaper line?</td><td class="who">Youssef, Haroun</td></tr>
+        <tr><td class="id">O-12</td><td>Ad budget always paid by the client, never advanced by the fund?</td><td class="who">Haroun</td></tr>
+        <tr><td class="id">O-13</td><td>Exact first names and roles of Aziz, Drago and Idriss; Marketing lead confirmed?</td><td class="who">Youssef</td></tr>
+      </tbody>
+    </table>
+    <div class="callout reveal">While these points are open, D-029 stays "proposed" and <b>nothing is owed to anyone</b> on this basis.</div>
+  </div>
+</section>
+
+<!-- 15 -->
+<section class="slide s-title" data-n="" aria-label="End">
+  <div class="stripe"></div>
+  <div class="slide-content">
+    <div class="eyebrow reveal">What's next</div>
+    <h1 class="reveal">We validate.<br>We write it down.<br>We sell.</h1>
+    <p class="lead reveal">The full plan, the share simulator and the decision log are online for everyone.</p>
+    <p class="link reveal">menu4all-os.vercel.app · menu4all-os.vercel.app/deux-secteurs.html</p>
+  </div>
+  <div class="ghost">M4A</div>
+</section>
+
+<script>
+(function () {
+  'use strict';
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var dotsNav = document.getElementById('dots'), progress = document.getElementById('progress');
+  var counter = document.getElementById('counter'), totalEl = document.getElementById('total');
+  totalEl.textContent = String(slides.length).padStart(2, '0');
+  var dots = slides.map(function (s, i) {
+    var b = document.createElement('button'); b.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+    b.addEventListener('click', function () { goTo(i); }); dotsNav.appendChild(b); return b;
+  });
+  var current = 0;
+  function goTo(i) {
+    var t = Math.max(0, Math.min(slides.length - 1, i));
+    window.scrollTo(0, slides[t].offsetTop); slides[t].classList.add('in');
+  }
+  function setCurrent(i) {
+    current = i; dots.forEach(function (d, j) { d.classList.toggle('active', j === i); });
+    counter.querySelector('.cur').textContent = String(i + 1).padStart(2, '0');
+  }
+  document.addEventListener('keydown', function (e) {
+    if (['ArrowDown', 'ArrowRight', ' ', 'PageDown'].indexOf(e.key) !== -1) { e.preventDefault(); goTo(current + 1); }
+    else if (['ArrowUp', 'ArrowLeft', 'PageUp'].indexOf(e.key) !== -1) { e.preventDefault(); goTo(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); goTo(0); }
+    else if (e.key === 'End') { e.preventDefault(); goTo(slides.length - 1); }
+  });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) { if (en.isIntersecting) { en.target.classList.add('in'); setCurrent(slides.indexOf(en.target)); } });
+    }, { threshold: 0.55 });
+    slides.forEach(function (s) { io.observe(s); });
+  }
+  function onScroll() {
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    var idx = Math.round(window.scrollY / window.innerHeight);
+    if (idx >= 0 && idx < slides.length) { slides[idx].classList.add('in'); setCurrent(idx); }
+  }
+  window.addEventListener('scroll', onScroll, { passive: true });
+  window.addEventListener('resize', onScroll, { passive: true });
+  slides[0].classList.add('in'); onScroll();
+})();
+</script>
+</body>
+</html>

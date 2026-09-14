@@ -54,7 +54,9 @@ b { color: var(--ink); }
 .counter { position: fixed; left: var(--pad); bottom: calc(var(--pad) * .5); font-family: var(--mono); font-size: var(--small); color: var(--ink-3); z-index: 60; }
 .counter .cur { color: var(--accent); }
 .keyboard-hint { position: fixed; right: 40px; bottom: calc(var(--pad) * .5); font-size: var(--small); color: var(--ink-3); z-index: 60; }
-@media (max-width: 600px) { .nav-dots, .keyboard-hint { display: none; } }
+.lang { position: fixed; top: 14px; right: 40px; z-index: 60; font-family: var(--mono); font-size: var(--small); color: var(--ink-2); text-decoration: none; border: 1px solid var(--line); border-radius: 999px; padding: 4px 10px; background: var(--bg-soft); }
+.lang:hover, .lang:focus-visible { color: var(--accent); border-color: var(--accent); outline: none; }
+@media (max-width: 600px) { .nav-dots, .keyboard-hint { display: none; } .lang { right: 14px; } }
 @media (max-height: 600px) { .nav-dots, .keyboard-hint, .ghost { display: none !important; } :root { --gap: .6rem; } }
 
 /* décor */
@@ -117,6 +119,7 @@ ol.rules li::before { content: counter(r); font-family: var(--display); font-siz
 <nav class="nav-dots" id="dots" aria-label="Navigation des slides"></nav>
 <div class="counter" id="counter"><span class="cur">01</span> / <span id="total">15</span></div>
 <div class="keyboard-hint">← → pour naviguer</div>
+<a class="lang" href="presentation-deux-secteurs-en.html" lang="en" hreflang="en">English version</a>
 
 <!-- 1 -->
 <section class="slide s-title" data-n="" aria-label="Titre">

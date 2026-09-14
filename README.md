@@ -9,6 +9,7 @@ En ligne : https://menu4all-os.vercel.app
 | [`index.html`](index.html) — **Tableau de bord** | Clients (un état, un responsable), équipe, journal des décisions filtrable, questions à trancher, les 4 règles. |
 | [`deux-secteurs.html`](deux-secteurs.html) — **Plan deux secteurs** | L'organisation Web / Marketing, les parts de chaque contrat, un **simulateur** (qui touche quoi sur un montant donné), les offres marketing, les 7 règles, qui fait quoi cette semaine. |
 | [`presentation-deux-secteurs.html`](presentation-deux-secteurs.html) — **Présentation d'équipe** | 15 slides pour la réunion de validation et l'onboarding des nouveaux (flèches du clavier pour naviguer). |
+| [`presentation-deux-secteurs-en.html`](presentation-deux-secteurs-en.html) — **Team presentation (English)** | The same 15 slides in English ; bouton de langue en haut à droite de chaque déck. |
 
 Les sources en texte, à côté :
 
