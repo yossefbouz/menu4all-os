@@ -179,7 +179,7 @@
 <header class="top">
   <span class="eyebrow">Menu4All · six people · updated 14 Sept 2026</span>
   <h1>What's next, what happened, who does what, and how we get paid.</h1>
-  <p>One page for the whole team. Two meetings a week. Every decision written down the same day. Nothing is owed to anyone that isn't written here.</p>
+  <p>One page for the whole team. Meetings on weekdays and weekends. Every decision written down the same day. Nothing is owed to anyone that isn't written here.</p>
 </header>
 
 <section id="calendar">
@@ -187,15 +187,17 @@
   <div class="next" id="next-meeting"><div><div class="lbl">Next team meeting</div><div class="when" id="next-when">—</div></div><div class="in" id="next-in"></div></div>
   <div class="cal">
     <div class="box">
-      <h3>Two meetings a week <small>Tunisia time</small></h3>
+      <h3>Meetings every week, weekdays and weekends <small>Tunisia time</small></h3>
       <div class="slots">
         <div class="slot hi"><span class="d">Monday</span><span class="t">16:00 <small>afternoon meeting · alternative slot 15:00</small></span></div>
         <div class="slot hi"><span class="d">Thursday</span><span class="t">21:00 <small>evening meeting</small></span></div>
+        <div class="slot hi"><span class="d">Saturday</span><span class="t">16:00 <small>weekend afternoon</small></span></div>
+        <div class="slot hi"><span class="d">Sunday</span><span class="t">21:00 <small>weekend evening</small></span></div>
       </div>
-      <p class="rule"><b>To confirm at the first meeting:</b> the days. The agreed times are 16:00 (or 15:00) and 21:00 Tunisia time. Missing without a message counts as a "no".</p>
+      <p class="rule"><b>To confirm at the first meeting:</b> the days. Two on weekdays, two at the weekend; the agreed times are 16:00 (or 15:00) and 21:00 Tunisia time. Missing without a message counts as a "no".</p>
     </div>
     <div class="box">
-      <h3>Coming up <small>next 4 weeks</small></h3>
+      <h3>Coming up <small>next 2 weeks</small></h3>
       <div class="slots" id="upcoming"></div>
     </div>
   </div>
@@ -290,7 +292,7 @@
   function esc(s) { return String(s).replace(/[&<>"]/g, function (c) { return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]; }); }
 
   /* ---------- Calendar: two meetings a week, Tunisia time ---------- */
-  var MEETINGS = [{ day: 1, h: 16, m: 0, label: "Monday 16:00" }, { day: 4, h: 21, m: 0, label: "Thursday 21:00" }];
+  var MEETINGS = [{ day: 1, h: 16, m: 0, label: "Monday 16:00" }, { day: 4, h: 21, m: 0, label: "Thursday 21:00" }, { day: 6, h: 16, m: 0, label: "Saturday 16:00" }, { day: 0, h: 21, m: 0, label: "Sunday 21:00" }];
   var DAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
   var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   function nextOccurrences(from, count) {
@@ -320,7 +322,7 @@
 
   /* ---------- News ---------- */
   var NEWS = [
-    { d: "14 Sep", h: "Two sectors, six people, one pay model — proposed", b: "Aziz and Drago join. Web (Youssef, Bayram, Haroun) and Marketing (Haroun, Idriss, Aziz, Drago). Every contract is shared in fixed percentages on cash collected. Team meetings: two a week. This site launched.", who: "Youssef · D-029, D-030", big: true },
+    { d: "14 Sep", h: "Two sectors, six people, one pay model — proposed", b: "Aziz and Drago join. Web (Youssef, Bayram, Haroun) and Marketing (Haroun, Idriss, Aziz, Drago). Every contract is shared in fixed percentages on cash collected. Team meetings on weekdays and weekends. This site launched.", who: "Youssef · D-029, D-030", big: true },
     { d: "13 Sep", h: "Cap Grill marked DELIVERED, Caprice READY TO HAND OVER", b: "The team log was created: decisions, clients, team. A second manager account for Cap Grill (Gabrielle) still needs its SQL script run.", who: "Youssef · D-026, D-027" },
     { d: "08 Sep", h: "Cap Grill passed its production check before the demo", b: "Everything public tested on the live site: 128 dishes in 6 languages, real form, redirects, Lighthouse. Four fixes deployed.", who: "Youssef · D-025" },
     { d: "07 Sep", h: "Cap Grill go-live prepared; MANEKEN prototype built", b: "Real database audited (235 test orders), backed up, delete script written for Youssef to run by hand. A clickable demo for an ice-cream business was built the same day.", who: "Youssef · D-024" },
@@ -401,7 +403,7 @@
     { id: "D-027", d: "13 Sep", t: "Extra manager account for Cap Grill (Gabrielle)", b: "Created through public sign-up, so unconfirmed: sql/0008 confirms it and grants full manager access. To run.", who: "Youssef", flag: "Public sign-up is open on the Supabase project: close it (O-8)." },
     { id: "D-028", d: "14 Sep", t: "The negotiators have names: Bayram and Idriss", b: "They meet the manager, name the category and the daily pain, then hand over for a demo on the real menu.", who: "Youssef" },
     { id: "D-029", d: "14 Sep", t: "Two sectors, six people, pay by shares — PROPOSED", b: "Web and Marketing sell to the same clients. One-off: Closing 15 · Lead 5 · Base 10 · Delivery 50 · Fund 20. Recurring: Closing 10 (12 months) · Lead 5 (12 months) · Delivery 60 · Fund 25. Marketing offers proposed: Presence 250, Growth 450 per month, Shoot 300, Launch 600.", who: "Youssef", flag: "To validate at the next meeting (O-9 to O-13). Until then, nothing is owed to anyone on this basis." },
-    { id: "D-030", d: "14 Sep", t: "Two team meetings a week; this week's assignments", b: "Meetings at 16:00 (or 15:00) and 21:00 Tunisia time, days to confirm. Idriss and Bayram: Caprice handover, Art+ meeting, last Cap Grill QR codes. Youssef: the Art+ presentation. Aziz, Drago and Idriss: the marketing prices.", who: "Youssef" }
+    { id: "D-030", d: "14 Sep", t: "Team meetings on weekdays and weekends; this week's assignments", b: "Four slots a week at 16:00 (or 15:00) and 21:00 Tunisia time, two on weekdays and two at the weekend, days to confirm. Idriss and Bayram: Caprice handover, Art+ meeting, last Cap Grill QR codes. Youssef: the Art+ presentation. Aziz, Drago and Idriss: the marketing prices.", who: "Youssef" }
   ];
   document.getElementById("dlist").innerHTML = D.map(function (x) {
     return '<div class="d" data-who="' + esc(x.who) + (x.who2 ? "," + esc(x.who2) : "") + '" data-flag="' + (x.flag ? 1 : 0) + '"><div class="date">' + esc(x.d) + '</div><div class="id">' + esc(x.id) + '</div><div><div class="t">' + esc(x.t) + '</div><div class="b">' + esc(x.b) + '</div><div class="w">' + esc(x.who) + (x.who2 ? " · " + esc(x.who2) : "") + '</div>' + (x.flag ? '<div class="flag">' + esc(x.flag) + '</div>' : '') + '</div></div>';
@@ -439,7 +441,7 @@
     ["O-11", "'Two sectors' discount: 10% on the cheaper line?", "Youssef + Haroun"],
     ["O-12", "Ad budget always paid by the client, never advanced by the fund?", "Haroun"],
     ["O-13", "Exact first names and roles of Aziz, Drago, Idriss; Marketing lead confirmed?", "Youssef"],
-    ["O-14", "Meeting days: which two days for the 16:00 and 21:00 slots?", "Everyone"]
+    ["O-14", "Meeting days: which weekdays and which weekend days for the 16:00 and 21:00 slots?", "Everyone"]
   ];
   document.getElementById("open-list").innerHTML = OPEN.map(function (o) { return '<tr><td class="id">' + o[0] + '</td><td>' + esc(o[1]) + '</td><td class="who">' + esc(o[2]) + '</td></tr>'; }).join("");
 })();
